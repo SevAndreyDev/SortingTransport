@@ -1,0 +1,171 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.11f1 (99c7afb366b3) revision 10078127'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 17134.648; Version 1803; 64bit' Language: 'ru' Physical Memory: 16342 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.11f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+D:/Workspace/Unity Projects/English Gym Kids/Sorting Transport/UNITY BASE
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+62034
+Successfully changed project path to: D:/Workspace/Unity Projects/English Gym Kids/Sorting Transport/UNITY BASE
+D:/Workspace/Unity Projects/English Gym Kids/Sorting Transport/UNITY BASE
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 51.99 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.11f1 (99c7afb366b3)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Workspace/Unity Projects/English Gym Kids/Sorting Transport/UNITY BASE/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1050 (ID=0x1c81)
+    Vendor:   
+    VRAM:     1977 MB
+    Driver:   25.21.14.1881
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56124
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001641 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 47.13 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.117 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.004155 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 51.73 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.588 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 0.52 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2358 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.9 MB.
+System memory in use after: 108.6 MB.
+
+Unloading 50 unused Assets to reduce memory usage. Loaded Objects now: 2780.
+Total: 3.676492 ms (FindLiveObjects: 0.264191 ms CreateObjectMapping: 0.130048 ms MarkObjects: 2.202277 ms  DeleteObjects: 1.077928 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/INTERNAL ASSETS/Scripts/Audio Manager/AudioManager.cs
+  artifactKey: Guid(8c716c19579d60941a3c82ec68544b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/INTERNAL ASSETS/Scripts/Audio Manager/AudioManager.cs using Guid(8c716c19579d60941a3c82ec68544b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7b7dd9fd20727ae7aed3bad3149eb70') in 0.059056 seconds
+  Import took 0.063481 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.656087 seconds.
+  path: Assets/INTERNAL ASSETS/Scripts/Audio Manager/AudioManager.cs
+  artifactKey: Guid(8c716c19579d60941a3c82ec68544b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/INTERNAL ASSETS/Scripts/Audio Manager/AudioManager.cs using Guid(8c716c19579d60941a3c82ec68544b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f59e11a8b126d3bb026ba4de2f2e6d6') in 0.001970 seconds
+  Import took 0.008165 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000929 seconds.
+  path: Assets/INTERNAL ASSETS/Scripts/Audio Manager/AudioManager.cs
+  artifactKey: Guid(8c716c19579d60941a3c82ec68544b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/INTERNAL ASSETS/Scripts/Audio Manager/AudioManager.cs using Guid(8c716c19579d60941a3c82ec68544b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f59e11a8b126d3bb026ba4de2f2e6d6') in 0.002005 seconds
+  Import took 0.007203 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.616237 seconds.
+  path: Assets/INTERNAL ASSETS/Scripts/Patterns/MonoSingleton.cs
+  artifactKey: Guid(f807fe8329799a04eac4a0372f20cc7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/INTERNAL ASSETS/Scripts/Patterns/MonoSingleton.cs using Guid(f807fe8329799a04eac4a0372f20cc7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c637b5effc696fefb9d3ef83240360da') in 0.002443 seconds
+  Import took 0.007300 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004359 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.51 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.106 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2320 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 105.0 MB.
+
+Unloading 38 unused Assets to reduce memory usage. Loaded Objects now: 2784.
+Total: 3.325602 ms (FindLiveObjects: 0.241322 ms CreateObjectMapping: 0.114688 ms MarkObjects: 1.877670 ms  DeleteObjects: 1.090557 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 14.083948 seconds.
+  path: Assets/INTERNAL ASSETS/Scripts/Patterns/MonoSingleton.cs
+  artifactKey: Guid(f807fe8329799a04eac4a0372f20cc7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/INTERNAL ASSETS/Scripts/Patterns/MonoSingleton.cs using Guid(f807fe8329799a04eac4a0372f20cc7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13c97e5d9ce3ac0374677d353358db2c') in 0.004573 seconds
+  Import took 0.008434 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.745426 seconds.
+  path: Assets/INTERNAL ASSETS/Scripts/Spine Animations/SpineAnimationController.cs
+  artifactKey: Guid(883ab5e212b51f34d86322eadb748a62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/INTERNAL ASSETS/Scripts/Spine Animations/SpineAnimationController.cs using Guid(883ab5e212b51f34d86322eadb748a62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5fa4a14477216aa0c468f8a4fdf5483') in 0.003297 seconds
+  Import took 0.007355 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005398 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.59 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.152 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.52 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2320 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 106.4 MB.
+System memory in use after: 105.1 MB.
+
+Unloading 38 unused Assets to reduce memory usage. Loaded Objects now: 2788.
+Total: 3.447799 ms (FindLiveObjects: 0.245418 ms CreateObjectMapping: 0.116736 ms MarkObjects: 1.870843 ms  DeleteObjects: 1.213096 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 13.871910 seconds.
+  path: Assets/INTERNAL ASSETS/Scripts/Spine Animations/SpineAnimationController.cs
+  artifactKey: Guid(883ab5e212b51f34d86322eadb748a62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/INTERNAL ASSETS/Scripts/Spine Animations/SpineAnimationController.cs using Guid(883ab5e212b51f34d86322eadb748a62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94ac870db08b4f87298384cba38e5685') in 0.004557 seconds
+  Import took 0.008303 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

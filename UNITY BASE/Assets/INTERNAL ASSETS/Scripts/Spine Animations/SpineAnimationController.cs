@@ -7,20 +7,30 @@ namespace EnglishKids.SortingTransport
 {
     public class SpineAnimationController : MonoBehaviour
     {
+        [Serializable]
+        public class AnimationModule
+        {
+            public AnimationReferenceAsset animation;
+            public float speed = 1f;
+            public bool loop;
+        }
+
         //==================================================
         // Fields
         //==================================================
 
         [SerializeField] private SkeletonGraphic _animation;
 
-        protected string _currentAnimation;
+        protected string _currentAnimationName;
         private Action<string> OnAnimationCompleteHandler;
 
         //==================================================
         // Properties
         //==================================================
 
-        public bool IsPlaying { get { return !string.IsNullOrEmpty(_currentAnimation) && _animation.AnimationState.GetCurrent(0).IsComplete; } }
+        public bool IsPlaying { get; protected set; }
+        public bool IsLooping { get; protected set; }
+        //public bool IsPlaying { get { return !string.IsNullOrEmpty(_currentAnimation) && _animation.AnimationState.GetCurrent(0).IsComplete; } }
 
         //==================================================
         // Methods
@@ -28,31 +38,37 @@ namespace EnglishKids.SortingTransport
 
         protected void PlayAnimation(AnimationReferenceAsset targetAnimation, bool loop, float animationSpeed)
         {
-            if (!targetAnimation.name.Equals(_currentAnimation))
-            {                
+            if (!targetAnimation.name.Equals(_currentAnimationName))
+            {
+                this.IsPlaying = true;
+                this.IsLooping = loop;
+
                 _animation.AnimationState.ClearTrack(0);
                 _animation.AnimationState.SetAnimation(0, targetAnimation, loop).TimeScale = animationSpeed;
 
                 if (!loop)
                 {
-                    _animation.AnimationState.Complete -= OnAnimationCompleteEvent;
-                    _animation.AnimationState.Complete += OnAnimationCompleteEvent;
+                    _animation.AnimationState.Complete -= OnAnimationComplete;
+                    _animation.AnimationState.Complete += OnAnimationComplete;
                 }
-                            
-                _currentAnimation = targetAnimation.name;
+
+                _currentAnimationName = targetAnimation.name;
             }            
         }
 
-        #region Events
-        protected virtual void OnAnimationComplete(TrackEntry trackEntry) { }
-
-        private void OnAnimationCompleteEvent(TrackEntry trackEntry)
+        protected void PlayAnimation(AnimationModule animationModule)
         {
-            _animation.AnimationState.Complete -= OnAnimationCompleteEvent;
+            PlayAnimation(animationModule.animation, animationModule.loop, animationModule.speed);
+        }
+                
+        #region Events
+        protected virtual void OnAnimationComplete(TrackEntry trackEntry)
+        {
+            _animation.AnimationState.Complete -= OnAnimationComplete;
             _animation.AnimationState.ClearTrack(0);
-            _currentAnimation = string.Empty;
+            _currentAnimationName = string.Empty;
 
-            OnAnimationComplete(trackEntry);
+            this.IsPlaying = false;
         }
         #endregion
     }

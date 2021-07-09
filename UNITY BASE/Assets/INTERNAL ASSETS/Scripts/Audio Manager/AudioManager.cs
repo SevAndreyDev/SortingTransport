@@ -7,12 +7,7 @@ namespace EnglishKids.SortingTransport
     public enum Audio
     {
         None,
-        Pick,
-        CorrectSlot,
-        WrongSlot,
-        FactoryMoving,
-        Green,
-        Blue
+        Speach
     }
         
     public class AudioManager : MonoSingleton<AudioManager>
@@ -82,7 +77,9 @@ namespace EnglishKids.SortingTransport
             AudioTrack track = null;
             AudioTrack lastTrack = null;
 
-            while (true)
+            bool canPlay = _musics.Length > 0;
+
+            while (canPlay)
             {
                 int index = Random.Range(0, actualMusics.Count);
                 track = actualMusics[index];

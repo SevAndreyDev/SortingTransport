@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb724259c75c7b49b721c1662180d0d, type: 3}
+  m_Name: Green
+  m_EditorClassIdentifier: 
+  _kind: 1
+  _background: {fileID: 21300000, guid: 6cd0d55838b5e644ca8a29618e59012d, type: 3}
+  _scaleFactor: 1
+  _transportElements:
+  - kind: 0
+    sprite: {fileID: 21300000, guid: e796566b86ba028479c7916643ba5518, type: 3}
+  - kind: 1
+    sprite: {fileID: 21300000, guid: a27efe71daa713042beae90e486605b4, type: 3}
+  - kind: 2
+    sprite: {fileID: 21300000, guid: 6acd33b9ab096b9438fd4a46a6cf5316, type: 3}
+  - kind: 3
+    sprite: {fileID: 21300000, guid: b45d4bb2e70f17f4d8d09f125997ff7d, type: 3}

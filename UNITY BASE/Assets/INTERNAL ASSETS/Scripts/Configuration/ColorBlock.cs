@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EnglishKids.SortingTransport
 {
-    [CreateAssetMenu(fileName = "Color Block", menuName = "Sorting Transport/Color Block", order = 50)]
+    [CreateAssetMenu(fileName = "Color Block", menuName = "Sorting Transport/Color Block", order = 51)]
     public class ColorBlock : ScriptableObject
     {
         [Serializable]
@@ -11,6 +11,7 @@ namespace EnglishKids.SortingTransport
         {
             public TransportKinds kind;
             public Sprite sprite;
+            public float scale = 1f;
         }
 
         //==================================================

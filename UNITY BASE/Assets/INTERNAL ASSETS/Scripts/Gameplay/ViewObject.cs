@@ -18,6 +18,8 @@ namespace EnglishKids.SortingTransport
         //==================================================
 
         public RectTransform CachedTransform { get { return _cachedTransform; } }
+        public float Width { get { return _cachedTransform.rect.width; }  set { _cachedTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value); } }
+        public float Height { get { return _cachedTransform.rect.height; } set { _cachedTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, value); } }
         public bool ActiveSelf { get { CheckAndCachedGameObject(); return _gameObject.activeSelf; } }
         
         //==================================================

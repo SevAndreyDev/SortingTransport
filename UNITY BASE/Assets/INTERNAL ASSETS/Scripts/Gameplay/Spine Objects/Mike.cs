@@ -75,10 +75,10 @@ namespace EnglishKids.SortingTransport
         public void Hide(bool immediately = false)
         {
             if (!this.IsTweenPlaying)
-                PlayTweenAnimation(_hidePoint.localPosition, _showTween, immediately);
+                PlayTweenAnimation(_hidePoint.localPosition, _hideTween, immediately);
         }
 
-        private void PlayTweenAnimation(Vector3 targetPoint, TweenAnimation tween, bool immediately = false)
+        private void PlayTweenAnimation(Vector3 targetPoint, TweenAnimation tween, bool immediately)
         {
             if (immediately)
             {

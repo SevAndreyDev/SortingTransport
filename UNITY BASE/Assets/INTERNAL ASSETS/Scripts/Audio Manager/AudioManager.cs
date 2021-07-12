@@ -7,7 +7,13 @@ namespace EnglishKids.SortingTransport
     public enum Audio
     {
         None,
-        Speach
+        Conveyer,
+        Steam
+    }
+
+    public enum Speach
+    {
+        SortByColor
     }
         
     public class AudioManager : MonoSingleton<AudioManager>
@@ -19,6 +25,14 @@ namespace EnglishKids.SortingTransport
             public AudioClip clip;
             [Range(0f, 1f)] public float volume = 1f;
             public int priority;
+        }
+
+        [System.Serializable]
+        private class SpeachTrack
+        {
+            public Speach kind;
+            public AudioClip clip;
+            [Range(0f, 1f)] public float volume = 1f;            
         }
 
         //==================================================
@@ -43,10 +57,10 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private AudioTrack[] _sounds;
 
         [Header("Speach List")]
-        [SerializeField] private AudioTrack[] _speaches;
+        [SerializeField] private SpeachTrack[] _speaches;
 
         private List<AudioSource> _soundSources;
-        private AudioTrack _speachOrder;
+        private SpeachTrack _speachOrder;
 
         //==================================================
         // Methods
@@ -155,7 +169,7 @@ namespace EnglishKids.SortingTransport
             }
         }
 
-        public void PlaySpeach(Audio speachSound)
+        public void PlaySpeach(Speach speachSound)
         {
             _speachOrder = FindTrack(_speaches, speachSound);
         }
@@ -203,6 +217,28 @@ namespace EnglishKids.SortingTransport
         private AudioTrack FindTrack(AudioTrack[] list, string name)
         {
             foreach (AudioTrack item in list)
+            {
+                if (item.clip.name == name)
+                    return item;
+            }
+
+            return null;
+        }
+
+        private SpeachTrack FindTrack(SpeachTrack[] list, Speach kind)
+        {
+            foreach (SpeachTrack item in list)
+            {
+                if (item.kind == kind)
+                    return item;
+            }
+
+            return null;
+        }
+
+        private SpeachTrack FindTrack(SpeachTrack[] list, string name)
+        {
+            foreach (SpeachTrack item in list)
             {
                 if (item.clip.name == name)
                     return item;

@@ -1,15 +1,5 @@
-using System;
-
 namespace EnglishKids.SortingTransport
 {
-    public enum GameStates
-    {
-        Loading,
-        CutScene,
-        Game,
-        StarMode
-    }
-
     public enum Orientations
     {
         Left,
@@ -28,5 +18,16 @@ namespace EnglishKids.SortingTransport
         Car,
         Tractor,
         Helicopter
+    }
+
+    public enum PoolObjectKinds
+    {
+        ConveyerItem,
+        Star
+    }
+
+    public class GameConstants
+    {
+        public const float HALF_FACTOR = 0.5f;
     }
 }

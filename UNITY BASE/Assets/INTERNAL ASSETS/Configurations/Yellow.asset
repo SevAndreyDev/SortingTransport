@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: Yellow
   m_EditorClassIdentifier: 
   _kind: 0
-  _background: {fileID: 21300000, guid: ad9784ed16c888a4abeba67d9148333b, type: 3}
+  _background: {fileID: 21300000, guid: 391121549ec3aa946ad7d71b91756936, type: 3}
   _scaleFactor: 1
   _transportElements:
   - kind: 0
     sprite: {fileID: 21300000, guid: 510f51780c5ade44692ffddb661da488, type: 3}
+    scale: 1
   - kind: 1
     sprite: {fileID: 21300000, guid: 3968aa0783c948943886210fde7b7edb, type: 3}
+    scale: 1
   - kind: 2
     sprite: {fileID: 21300000, guid: c802250f15ca4134e8ff5aa0da0a643d, type: 3}
+    scale: 0.7
   - kind: 3
     sprite: {fileID: 21300000, guid: 63aa23a70d9fa6f45862e816c4c68d5b, type: 3}
+    scale: 0.9

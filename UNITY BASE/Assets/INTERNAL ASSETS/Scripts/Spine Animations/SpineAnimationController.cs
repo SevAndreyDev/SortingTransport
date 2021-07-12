@@ -28,8 +28,12 @@ namespace EnglishKids.SortingTransport
         // Properties
         //==================================================
 
+        public float Width { get { return _animation.Skeleton.Data.Width; } }
+        public float Height { get { return _animation.Skeleton.Data.Height; } }
+        public float Scale { get { return _animation.skeletonDataAsset.scale; } }
         public bool IsPlaying { get; protected set; }
         public bool IsLooping { get; protected set; }
+        
         //public bool IsPlaying { get { return !string.IsNullOrEmpty(_currentAnimation) && _animation.AnimationState.GetCurrent(0).IsComplete; } }
 
         //==================================================

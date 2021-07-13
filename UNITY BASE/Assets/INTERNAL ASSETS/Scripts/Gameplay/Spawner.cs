@@ -17,8 +17,9 @@ namespace EnglishKids.SortingTransport
 
         protected override void Init()
         {
-            base.Init(); 
-            
+            base.Init();
+
+            _factory.Clear();
             _factory.Init(_defaultContainer);
         }
 

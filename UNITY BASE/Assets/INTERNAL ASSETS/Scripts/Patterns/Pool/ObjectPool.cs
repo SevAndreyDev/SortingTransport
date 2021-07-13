@@ -75,7 +75,7 @@ namespace EnglishKids.SortingTransport
 			_container = parent;
 
             for (int i = 0; i < _objectsList.Count; i++)
-                _objectsList[i].transform.SetParent(parent, true);                
+                _objectsList[i].transform.SetParent(parent, true);
         }
 
         public void GenerateObjectsInPool(int count)

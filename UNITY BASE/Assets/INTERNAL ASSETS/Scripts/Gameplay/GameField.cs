@@ -15,9 +15,7 @@ namespace EnglishKids.SortingTransport
 
         [Header("Pivots List")]
         [SerializeField] private TransportPivot[] _pivots;
-
-        private GameManager _manager;
-
+                
         //==================================================
         // Properties
         //==================================================
@@ -25,15 +23,15 @@ namespace EnglishKids.SortingTransport
         public Image Background { get { return _background; } }
         public Orientations Orientation { get { return _orientation; } }
         public ColorBlock ColorBlockData { get; private set; }
-        
+
         //==================================================
         // Methods
         //==================================================
 
-        public void Initialize()
+        protected override void Init()
         {
-            _manager = GameManager.Instance;
-
+            base.Init();
+            
             Vector3 direction = _orientation == Orientations.Left ? Vector3.left : Vector3.right;
             
             float width = this.CachedTransform.rect.size.x;

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using DG.Tweening;
 
 namespace EnglishKids.SortingTransport
 {
@@ -10,7 +11,8 @@ namespace EnglishKids.SortingTransport
         Loading,
         CutScene,
         Game,
-        StarMode
+        StarMode,
+        Reset
     }
 
     public class GameManager : MonoSingleton<GameManager>
@@ -18,6 +20,8 @@ namespace EnglishKids.SortingTransport
         public static event Action OnStartCutScene;
         public static event Action OnStartGame;
         public static event Action OnStartStarMode;
+        public static event Action OnStartResetGame;        
+        public static event Action<int> OnChangeStarsCount;
 
         //==================================================
         // Fields
@@ -30,10 +34,12 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private RectTransform _dragField;
         [SerializeField] private RectTransform _leftAnswerAnchor;
         [SerializeField] private RectTransform _rightAnswerAnchor;
+        [SerializeField] private int _starsPerLevel;
 
         [Header("Configuration Data")]
         [SerializeField] private ColorBlock[] _colorBlocks;
 
+        private int _stars;
         private GameStates _state;
                         
         //==================================================
@@ -65,9 +71,16 @@ namespace EnglishKids.SortingTransport
                     case GameStates.StarMode:
                         OnStartStarMode?.Invoke();
                         break;
+
+                    case GameStates.Reset:
+                        OnStartResetGame?.Invoke();
+                        break;
                 }
             }
         }
+
+        public int StarsPerLevel { get { return _starsPerLevel; } }
+        public int Stars { get { return _stars; } set { _stars = value; OnChangeStarsCount?.Invoke(_stars); } }
 
         public float ReferenceScreenHeight { get { return _referenceScreenHeight; } }        
         public float TopRobotBarOffset { get { return _topRobotBarOffset; } }
@@ -118,6 +131,10 @@ namespace EnglishKids.SortingTransport
             OnStartCutScene = null;
             OnStartGame = null;
             OnStartStarMode = null;
+            OnStartResetGame = null;            
+            OnChangeStarsCount = null;
+
+            EventManager.Instance.Clear();
 
             DragElement.ClearEvents();
         }
@@ -126,6 +143,7 @@ namespace EnglishKids.SortingTransport
         public void OnCloseGame(int targetSceneIndex)
         {
             ClearEvents();
+            DOTween.Clear();
 
             // Load target scene
             SceneManager.LoadScene(targetSceneIndex);

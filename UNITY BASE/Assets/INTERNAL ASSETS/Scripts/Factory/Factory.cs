@@ -63,12 +63,15 @@ namespace EnglishKids.SortingTransport
 
         public void Clear()
         {
-            foreach (KeyValuePair<string, ObjectPool> item in _gamePools)
+            if (_gamePools != null)
             {
-                item.Value.Clear();
-            }
+                foreach (KeyValuePair<string, ObjectPool> item in _gamePools)
+                {
+                    item.Value.Clear();
+                }
 
-            _gamePools.Clear();
+                _gamePools.Clear();
+            }
         }
     }
 }

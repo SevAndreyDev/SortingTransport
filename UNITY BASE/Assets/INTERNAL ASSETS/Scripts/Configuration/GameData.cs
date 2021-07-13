@@ -26,6 +26,11 @@ namespace EnglishKids.SortingTransport
         Star
     }
 
+    public enum GameEvents
+    {
+        ResetGameSceneObjects
+    }
+
     public class GameConstants
     {
         public const float HALF_FACTOR = 0.5f;

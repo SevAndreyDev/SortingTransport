@@ -22,22 +22,15 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private float _returnMovementDuration = 2f;
         [SerializeField] private float _putInSlotDuration = 0.3f;
 
-        private GameManager _manager;
-        private AudioManager _audio;
-
         private TransportKinds _transportKind;
         private ColorKinds _colorKind;
 
         private RectTransform _targetPanel;
-
-
-
+        
         private float _possibleTargetOffset;
         private Vector3 _startPosition;
         private Audio _speachKind;
-
-        private bool _wasInitialized;
-
+                
         //==================================================
         // Methods
         //==================================================
@@ -48,17 +41,11 @@ namespace EnglishKids.SortingTransport
             OnElementWasUsed = null;
         }
 
-        private void Initialize()
+        protected override void Init()
         {
-            if (!_wasInitialized)
-            {
-                _manager = GameManager.Instance;
-                _audio = AudioManager.Instance;
+            base.Init();
 
-                _startPosition = this.CachedTransform.localPosition;
-                
-                _wasInitialized = true;
-            }
+            _startPosition = this.CachedTransform.localPosition;
         }
 
         public void Activate(ColorBlock data, ColorBlock.TransportElement transport)
@@ -120,6 +107,11 @@ namespace EnglishKids.SortingTransport
                 //_cachedTransform.SetParent(_target.CachedTransform);
 
                 sequance.Append(this.CachedTransform.DOMove(_targetPanel.position, _putInSlotDuration));
+
+                sequance.OnComplete(() =>
+                {
+                    this.CachedTransform.SetParent(_targetPanel);
+                });
             }
             else
             {

@@ -30,40 +30,40 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private TweenAnimation _cutSceneTween;
         [SerializeField] private TweenAnimation _gameSceneTween;
 
-        private GameManager _manager;
-        private AudioManager _audio;
         private Spawner _spawner;
         private List<TransportCell> _transportCellList;
+        private List<ViewObject> _starsList;
         private int _currentCellIndex;
         private Vector2 _startPosition;
+        private bool _wasBuildedCutScene;
+        private bool _wasBuildedGameSCene;
+        private bool _wasBuildStarScene;
         
         //==================================================
         // Properties
         //==================================================
 
         public bool IsMoving { get; private set; }
-        
+
         //==================================================
         // Methods
         //==================================================
 
-        public void Initialize()
+        protected override void Init()
         {
-            _manager = GameManager.Instance;
-            _audio = AudioManager.Instance;
+            base.Init();
+            
             _spawner = Spawner.Instance;
 
             _transportCellList = new List<TransportCell>();
+            _starsList = new List<ViewObject>();
+
             _startPosition = this.CachedTransform.anchoredPosition;
         }
 
         public void BuildStartCell()
         {
-            if (_startPosition != this.CachedTransform.anchoredPosition)
-            {
-                this.CachedTransform.anchoredPosition = _startPosition;
-            }
-            else
+            if (!_wasBuildedCutScene)            
             {
                 // Separate cell
                 ViewObject cell = Instantiate(_emptyCell, this.CachedTransform);
@@ -77,13 +77,18 @@ namespace EnglishKids.SortingTransport
                 // Separate cell
                 cell = Instantiate(_emptyCell, this.CachedTransform);
                 cell.Height = (_manager.ReferenceScreenHeight - _startCell.Height) * GameConstants.HALF_FACTOR;
-                cell.SetActive(true);                                
+                cell.SetActive(true);
+
+                _wasBuildedCutScene = true;
+            }
+            else
+            {
+                this.CachedTransform.anchoredPosition = _startPosition;
             }
         }
 
         public void BuildTransportCell()
         {
-            _transportCellList.Clear();
             _currentCellIndex = 0;
             
             List<ConveyerItem> targetList = new List<ConveyerItem>();
@@ -100,17 +105,30 @@ namespace EnglishKids.SortingTransport
             for (int i = 0; i < blocksCount; i++)
             {
                 // Transport cell
-                TransportCell transportCell = Instantiate(_transportCell, this.CachedTransform) as TransportCell;
-                transportCell.Height = _manager.ReferenceScreenHeight - topOffset;                
-                transportCell.SetActive(true);
+                TransportCell transportCell;
+
+                if (!_wasBuildedGameSCene)
+                {
+                    transportCell = Instantiate(_transportCell, this.CachedTransform) as TransportCell;
+                    transportCell.Height = _manager.ReferenceScreenHeight - topOffset;
+                    transportCell.SetActive(true);
+
+                    _transportCellList.Add(transportCell);
+                }
+                else
+                {
+                    transportCell = _transportCellList[i];
+                }
                                 
                 FillTransportCell(transportCell, targetList);
-                _transportCellList.Add(transportCell);
-
-                // Separate cell
-                ViewObject cell = Instantiate(_emptyCell, this.CachedTransform);
-                cell.Height = topOffset;
-                cell.SetActive(true);
+                
+                if (!_wasBuildedGameSCene)
+                {
+                    // Separate cell
+                    ViewObject cell = Instantiate(_emptyCell, this.CachedTransform);
+                    cell.Height = topOffset;
+                    cell.SetActive(true);
+                }
             }
 
             if (_transportCellList.Count > 0)
@@ -119,13 +137,48 @@ namespace EnglishKids.SortingTransport
                 _transportCellList[_currentCellIndex].OnCellIsEmpty -= OnCellIsEmpty;
                 _transportCellList[_currentCellIndex].OnCellIsEmpty += OnCellIsEmpty;
             }
+
+            _wasBuildedGameSCene = true;
         }
 
-        public void BuildStarCell()
+        public void BuildStarCell(StarsView starsView)
         {
-            ViewObject cell = Instantiate(_emptyCell, this.CachedTransform);
-            cell.Height = _manager.ReferenceScreenHeight;
+            float topOffset = _manager.TopRobotBarOffset * GameConstants.HALF_FACTOR;
+            float sumHeight = _manager.ReferenceScreenHeight - topOffset;
+            float cellHeight = sumHeight / _itemsInTransportCell;
+
+            // Main Cell
+            ViewObject cell;
+
+            int count = _starsList.Count > 0 ? _starsList.Count : _itemsInTransportCell;
+            for (int i = 0; i < count; i++)
+            {
+                if (!_wasBuildStarScene)
+                {
+                    cell = Instantiate(_emptyCell, this.CachedTransform);
+                    cell.Height = cellHeight;
+                    cell.SetActive(true);
+
+                    _starsList.Add(cell);
+                }
+                else
+                    cell = _starsList[i];
+
+                Star star = _spawner.Get(PoolObjectKinds.Star) as Star;
+                star.Initialize();
+                star.Activate(starsView);
+                star.CachedTransform.SetParent(cell.CachedTransform);
+                star.CachedTransform.localPosition = Vector3.zero;
+                star.CachedTransform.localScale = Vector3.one;
+                star.SetActive(true);
+            }
+
+            // Separate cell
+            cell = Instantiate(_emptyCell, this.CachedTransform);
+            cell.Height = topOffset;
             cell.SetActive(true);
+
+            _wasBuildStarScene = true;
         }
 
         public void Move()
@@ -172,7 +225,8 @@ namespace EnglishKids.SortingTransport
             foreach (ColorBlock.TransportElement item in block.TransportElements)
             {
                 ConveyerItem conveyerElement = _spawner.Get(PoolObjectKinds.ConveyerItem) as ConveyerItem;
-                conveyerElement.Configure(block, item);
+                conveyerElement.Initialize();
+                conveyerElement.Activate(block, item);
 
                 list.Add(conveyerElement);
             }

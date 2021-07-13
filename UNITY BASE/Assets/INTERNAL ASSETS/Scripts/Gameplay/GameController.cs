@@ -16,6 +16,7 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private Mike _mike;
 
         [Header("Base Settings")]
+        [SerializeField] private StarsView _starsView;
         [SerializeField] private GameStatePositionTween _backgroundTween;
         [SerializeField] private GameStatePositionTween _robotTween;
         [SerializeField] private GameField _leftField;
@@ -25,6 +26,7 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private Conveyer _conveyer;
 
         private GameManager _manager;
+        private EventManager _eventManager;
         private AudioManager _audio;
 
         //==================================================
@@ -38,6 +40,7 @@ namespace EnglishKids.SortingTransport
         private void Awake()
         {
             _manager = GameManager.Instance;
+            _eventManager = EventManager.Instance;
             _audio = AudioManager.Instance;
             
             GameManager.OnStartCutScene -= OnStartCutScene;
@@ -46,6 +49,8 @@ namespace EnglishKids.SortingTransport
             GameManager.OnStartGame += OnStartGame;
             GameManager.OnStartStarMode -= OnStartStarMode;
             GameManager.OnStartStarMode += OnStartStarMode;
+            GameManager.OnStartResetGame -= OnStartResetGame;
+            GameManager.OnStartResetGame += OnStartResetGame;
 
             _conveyer.Initialize();
 
@@ -115,12 +120,30 @@ namespace EnglishKids.SortingTransport
             yield return new WaitForEndOfFrame();
             _conveyer.Move();
         }
-
+                
         private IEnumerator StarModeProcess()
         {
-            _conveyer.BuildStarCell();
+            _conveyer.BuildStarCell(_starsView);
             yield return new WaitForSeconds(SHORT_DELAY);
             _conveyer.Move();
+
+            _starsView.Show();            
+        }
+
+        private IEnumerator ResetGameProcess()
+        {
+            yield return new WaitForSeconds(SHORT_DELAY);
+
+            _starsView.Hide();
+
+            _backgroundTween.MoveToCutScenePosition();
+            _robotTween.MoveToCutScenePosition();
+
+            yield return new WaitWhile(() => _backgroundTween.IsTweenPlaying || _robotTween.IsTweenPlaying);
+            
+            _eventManager.InvokeEvent(GameEvents.ResetGameSceneObjects.ToString());
+
+            _manager.State = GameStates.CutScene;
         }
 
         #region Events
@@ -137,6 +160,11 @@ namespace EnglishKids.SortingTransport
         private void OnStartStarMode()
         {
             StartCoroutine(StarModeProcess());
+        }
+
+        private void OnStartResetGame()
+        {
+            StartCoroutine(ResetGameProcess());
         }
         #endregion
     }

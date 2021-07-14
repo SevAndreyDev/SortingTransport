@@ -9,14 +9,18 @@ namespace EnglishKids.SortingTransport
         // Fields
         //==================================================
 
+        [SerializeField] RectTransform _backgroundsPanel;
         [SerializeField] TransportKinds _kind;
+        [SerializeField] private Audio _transportSound;
         
         //==================================================
         // Properties
         //==================================================
         
+        public RectTransform BackgroundsPanel { get { return _backgroundsPanel; } }
         public TransportKinds TransportKind { get { return _kind; } }
         public ColorKinds ColorKind { get; private set; }
+        public Audio TransportSound { get { return _transportSound; } }
         
         //==================================================
         // Methods

@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: Green
   m_EditorClassIdentifier: 
   _kind: 1
+  _speach: 6
   _background: {fileID: 21300000, guid: 7e3535e88cea9d3488ec91e37d7c2590, type: 3}
   _scaleFactor: 1
   _transportElements:
   - kind: 0
     sprite: {fileID: 21300000, guid: e796566b86ba028479c7916643ba5518, type: 3}
     scale: 1
+    speach: 2
   - kind: 1
     sprite: {fileID: 21300000, guid: a27efe71daa713042beae90e486605b4, type: 3}
     scale: 1
+    speach: 1
   - kind: 2
     sprite: {fileID: 21300000, guid: 6acd33b9ab096b9438fd4a46a6cf5316, type: 3}
     scale: 0.7
+    speach: 3
   - kind: 3
     sprite: {fileID: 21300000, guid: b45d4bb2e70f17f4d8d09f125997ff7d, type: 3}
     scale: 0.9
+    speach: 4

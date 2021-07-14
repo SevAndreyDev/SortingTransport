@@ -21,6 +21,10 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private GameStatePositionTween _robotTween;
         [SerializeField] private GameField _leftField;
         [SerializeField] private GameField _rightField;
+
+        [Header("Speach Buttons")]
+        [SerializeField] private SpeachButton _leftButton;
+        [SerializeField] private SpeachButton _rightButton;
         
         [Space]
         [SerializeField] private Conveyer _conveyer;
@@ -116,6 +120,9 @@ namespace EnglishKids.SortingTransport
 
             yield return new WaitWhile(() => _backgroundTween.IsTweenPlaying || _robotTween.IsTweenPlaying);
 
+            _leftButton.Activate();
+            _rightButton.Activate();
+
             _conveyer.BuildTransportCell();
             yield return new WaitForEndOfFrame();
             _conveyer.Move();
@@ -123,6 +130,9 @@ namespace EnglishKids.SortingTransport
                 
         private IEnumerator StarModeProcess()
         {
+            _leftButton.Deactivate();
+            _rightButton.Deactivate();
+
             _conveyer.BuildStarCell(_starsView);
             yield return new WaitForSeconds(SHORT_DELAY);
             _conveyer.Move();
@@ -135,7 +145,7 @@ namespace EnglishKids.SortingTransport
             yield return new WaitForSeconds(SHORT_DELAY);
 
             _starsView.Hide();
-
+            
             _backgroundTween.MoveToCutScenePosition();
             _robotTween.MoveToCutScenePosition();
 

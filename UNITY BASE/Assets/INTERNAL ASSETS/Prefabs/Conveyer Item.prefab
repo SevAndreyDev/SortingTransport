@@ -91,9 +91,12 @@ MonoBehaviour:
   _cachedTransform: {fileID: 3515982705144670039}
   _conveyerPanel: {fileID: 3515982705231201566}
   _image: {fileID: 3515982705144670038}
-  _returnMovementDuration: 2
-  _rotationDuration: 1.5
-  _putInSlotDuration: 0.3
+  _toConveyer:
+    _duration: 0.8
+    _ease: 1
+  _toSlot:
+    _duration: 1.8
+    _ease: 1
 --- !u!1 &3515982705231201567
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,5 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cachedTransform: {fileID: 3515982705231201566}
   _objectKind: 0
-  _image: {fileID: 3515982705144670038}
   _dragElement: {fileID: 4495628553733880141}

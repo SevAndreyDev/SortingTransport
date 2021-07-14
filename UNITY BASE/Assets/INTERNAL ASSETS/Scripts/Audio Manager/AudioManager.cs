@@ -8,12 +8,22 @@ namespace EnglishKids.SortingTransport
     {
         None,
         Conveyer,
-        Steam
+        Steam,
+        Car,
+        Bike,
+        Tractor,
+        Helicopter
     }
 
     public enum Speach
     {
-        SortByColor
+        SortByColor,
+        Car,
+        Bike,
+        Tractor,
+        Helicopter,
+        Yellow,
+        Green
     }
         
     public class AudioManager : MonoSingleton<AudioManager>
@@ -114,6 +124,21 @@ namespace EnglishKids.SortingTransport
 
                 yield return new WaitForSeconds(track.clip.length);
             }
+        }
+
+        public void PlaySingleSound(Audio kind)
+        {
+            AudioTrack track = FindTrack(_sounds, kind);
+
+            foreach (AudioSource item in _soundSources)
+            {
+                if (item.isPlaying && item.clip.name.Equals(track.clip.name))
+                {
+                    return;
+                }
+            }
+
+            PlaySound(kind);
         }
 
         public void PlaySound(Audio kind)

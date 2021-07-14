@@ -94,6 +94,8 @@ namespace EnglishKids.SortingTransport
         public ColorBlock LeftDataBlock { get; private set; }
         public ColorBlock RightDataBlock { get; private set; }
 
+        public float ScaledScreenWidth { get { return (((float)Screen.width) / Screen.height) * _referenceScreenHeight; } }
+
         //==================================================
         // Methods
         //==================================================

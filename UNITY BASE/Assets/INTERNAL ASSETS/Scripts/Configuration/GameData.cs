@@ -28,6 +28,7 @@ namespace EnglishKids.SortingTransport
 
     public enum GameEvents
     {
+        RefreshSpeachButton,
         ResetGameSceneObjects
     }
 

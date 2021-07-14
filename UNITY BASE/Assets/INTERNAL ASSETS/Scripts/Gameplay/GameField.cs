@@ -53,5 +53,13 @@ namespace EnglishKids.SortingTransport
                 item.Activate(this.ColorBlockData.Kind);
             }
         }
+
+        #region Events
+        public void OnBackgroundClick()
+        {
+            _audio.PlaySpeach(this.ColorBlockData.ColorSpeach);
+            _eventManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), this.ColorBlockData.Kind, this.ColorBlockData.ColorSpeach);
+        }
+        #endregion
     }
 }

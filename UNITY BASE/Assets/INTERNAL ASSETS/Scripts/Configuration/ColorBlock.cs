@@ -12,6 +12,7 @@ namespace EnglishKids.SortingTransport
             public TransportKinds kind;
             public Sprite sprite;
             public float scale = 1f;
+            public Speach speach;
         }
 
         //==================================================
@@ -20,6 +21,7 @@ namespace EnglishKids.SortingTransport
 
         [Space]
         [SerializeField] private ColorKinds _kind;
+        [SerializeField] private Speach _speach;
 
         [Header("Base View Settings")]
         [SerializeField] private Sprite _background;
@@ -33,6 +35,7 @@ namespace EnglishKids.SortingTransport
         //==================================================
 
         public ColorKinds Kind { get { return _kind; } }
+        public Speach ColorSpeach { get { return _speach; } }
         public Sprite Background { get { return _background; } }
         public float ScaleFactor { get { return _scaleFactor; } }
         public TransportElement[] TransportElements { get { return _transportElements; } }

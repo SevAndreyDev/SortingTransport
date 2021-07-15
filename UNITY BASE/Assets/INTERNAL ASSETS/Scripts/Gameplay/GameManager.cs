@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -46,8 +45,9 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private RectTransform _leftAnswerAnchor;
         [SerializeField] private RectTransform _rightAnswerAnchor;
         [SerializeField] private int _starsPerLevel;
-                
+
         [Header("Configuration Data")]
+        [SerializeField] private BlocksAssembly _blocksAssembly;
         [SerializeField] private ColorBlock[] _colorBlocks;
 
         private Vector2 _canvasToScreenRation;
@@ -160,18 +160,11 @@ namespace EnglishKids.SortingTransport
         
         private void ConfigureNewGame()
         {
-            List<ColorBlock> blocks = new List<ColorBlock>(_colorBlocks);
-            this.LeftDataBlock = ExtractRandomColorBlock(blocks);
-            this.RightDataBlock = ExtractRandomColorBlock(blocks);
-        }
+            ColorBlock left, right;
+            _blocksAssembly.ConfigureColorBlocks(out left, out right);
 
-        private ColorBlock ExtractRandomColorBlock(List<ColorBlock> blocks)
-        {
-            int index = UnityEngine.Random.Range(0, blocks.Count);
-            ColorBlock target = blocks[index];
-            blocks.RemoveAt(index);
-
-            return target;
+            this.LeftDataBlock = left;
+            this.RightDataBlock = right;
         }
 
         private void ClearEvents()

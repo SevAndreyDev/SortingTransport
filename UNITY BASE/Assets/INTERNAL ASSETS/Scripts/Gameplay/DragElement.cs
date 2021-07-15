@@ -194,7 +194,7 @@ namespace EnglishKids.SortingTransport
                 _state = States.MoveToSlot;
                 OnElementWasUsed?.Invoke();
 
-                _audio.PlaySpeach(_transportData.speach, _data.ColorSpeach);
+                _audio.PlaySpeach(_data.ColorSpeach, _transportData.speach);
 
                 float duration = CalculateDuration(_targetPivot.CachedTransform.position, _toSlot.Duration);
                 sequance.Append(this.CachedTransform.DOMove(_targetPivot.CachedTransform.position, duration)).SetEase(_toSlot.Ease);

@@ -13,6 +13,7 @@ namespace EnglishKids.SortingTransport
         [Space]
         [SerializeField] private RectTransform _cursorTransform;
         [SerializeField] private CanvasGroup _cursorCanvas;
+        [SerializeField] private float _cursorYOffset;
         [SerializeField] private RectTransform _leftPivot;
         [SerializeField] private RectTransform _rightPivot;
 
@@ -103,7 +104,7 @@ namespace EnglishKids.SortingTransport
 
         private void PrepareCursor(ConveyerItem target)
         {
-            _cursorTransform.position = target.CachedTransform.position;
+            _cursorTransform.localPosition = target.CachedTransform.localPosition + Vector3.up * _cursorYOffset;
             _cursorCanvas.alpha = 0f;            
         }
 
@@ -132,7 +133,7 @@ namespace EnglishKids.SortingTransport
 
             var sequence = DOTween.Sequence();
 
-            sequence.Append(_cursorTransform.DOMove(pivot.position, _movingTween.Duration)).SetEase(_movingTween.Ease);
+            sequence.Append(_cursorTransform.DOLocalMove(pivot.localPosition + Vector3.up * _cursorYOffset, _movingTween.Duration)).SetEase(_movingTween.Ease);
             sequence.Insert(0f, _cursorCanvas.DOFade(1f, _fadeTween.Duration)).SetEase(_fadeTween.Ease);
             sequence.Insert(insertTime, _cursorCanvas.DOFade(0f, _fadeTween.Duration)).SetEase(_fadeTween.Ease);
 

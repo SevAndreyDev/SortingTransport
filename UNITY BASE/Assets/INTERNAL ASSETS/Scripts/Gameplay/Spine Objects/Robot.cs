@@ -27,11 +27,19 @@ namespace EnglishKids.SortingTransport
         // Fields
         //==================================================
 
+        [SerializeField] private RectTransform _cachedTransform;
+
         [Header("Spine Animations")]
         [SerializeField] private AnimationBlock[] _animationBlocks;
 
         private AnimationBlock _currentAnimation;
-        
+
+        //==================================================
+        // Proporties
+        //==================================================
+
+        public RectTransform CachedTransform { get { return _cachedTransform; } }
+
         //==================================================
         // Methods
         //==================================================

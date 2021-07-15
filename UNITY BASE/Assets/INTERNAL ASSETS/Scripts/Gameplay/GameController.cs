@@ -61,10 +61,11 @@ namespace EnglishKids.SortingTransport
             GameManager.OnStartResetGame += OnStartResetGame;
 
             _conveyer.Initialize();
+            _robot.CachedTransform.localScale = Vector3.one * _manager.ScaleFactor;
 
             _backgroundTween.Initialize();
             _robotTween.Initialize(_robot);
-
+                        
             _cloudController.Initialize();
             _helpController.Initialize();
 
@@ -79,7 +80,7 @@ namespace EnglishKids.SortingTransport
             _mike.Hide(true);
             _mike.Play(Mike.AnimationKinds.Idle);
             _robot.Play(Robot.AnimationKinds.Start);            
-            _conveyer.BuildStartCell();
+            _conveyer.BuildCutCell();
 
             yield return new WaitForEndOfFrame();
             yield return new WaitForSeconds(SHORT_DELAY);
@@ -139,6 +140,8 @@ namespace EnglishKids.SortingTransport
             _robotTween.MoveToGameScenePosition();
 
             yield return new WaitWhile(() => _backgroundTween.IsTweenPlaying || _robotTween.IsTweenPlaying);
+
+            _robot.Play(Robot.AnimationKinds.Start);
 
             _leftButton.Activate();
             _rightButton.Activate();

@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 50063790}
   - component: {fileID: 50063789}
   - component: {fileID: 50063791}
+  - component: {fileID: 50063792}
   m_Layer: 5
   m_Name: Pivot Tractor
   m_TagString: Untagged
@@ -232,8 +233,8 @@ RectTransform:
   m_Father: {fileID: 548445644}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.68, y: 0.55}
-  m_AnchorMax: {x: 0.68, y: 0.55}
+  m_AnchorMin: {x: 0.73, y: 0.55}
+  m_AnchorMax: {x: 0.73, y: 0.55}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -291,6 +292,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 2
   _transportSound: 5
+--- !u!114 &50063792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50063787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 50063788}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: 110, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: -30, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &83179756
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +690,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 352, y: 0}
+  m_SizeDelta: {x: 340, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &166041984
 MonoBehaviour:
@@ -869,6 +892,7 @@ GameObject:
   - component: {fileID: 200791154}
   - component: {fileID: 200791153}
   - component: {fileID: 200791155}
+  - component: {fileID: 200791156}
   m_Layer: 5
   m_Name: Pivot Bike
   m_TagString: Untagged
@@ -891,8 +915,8 @@ RectTransform:
   m_Father: {fileID: 1779942979}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.38}
-  m_AnchorMax: {x: 0.2, y: 0.38}
+  m_AnchorMin: {x: 0.18, y: 0.38}
+  m_AnchorMax: {x: 0.18, y: 0.38}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -950,6 +974,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 0
   _transportSound: 4
+--- !u!114 &200791156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200791151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 200791152}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: 0, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: 40, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &212707990
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1043,7 @@ GameObject:
   - component: {fileID: 250496744}
   - component: {fileID: 250496743}
   - component: {fileID: 250496745}
+  - component: {fileID: 250496746}
   m_Layer: 5
   m_Name: Pivot Helicopter
   m_TagString: Untagged
@@ -1019,8 +1066,8 @@ RectTransform:
   m_Father: {fileID: 1779942979}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.82}
-  m_AnchorMax: {x: 0.35, y: 0.82}
+  m_AnchorMin: {x: 0.325, y: 0.82}
+  m_AnchorMax: {x: 0.325, y: 0.82}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1078,6 +1125,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 3
   _transportSound: 6
+--- !u!114 &250496746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250496741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 250496742}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: -140, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: 10, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &254181221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1545,30 @@ MonoBehaviour:
   - kind: 7
     clip: {fileID: 8300000, guid: dcf2317f954fdde419074de24a654700, type: 3}
     volume: 1
+  - kind: 8
+    clip: {fileID: 8300000, guid: 2b56ceefb7c66144aa2497853222aac8, type: 3}
+    volume: 1
+  - kind: 9
+    clip: {fileID: 8300000, guid: d2aef2f65cabef8459df56242832160b, type: 3}
+    volume: 1
+  - kind: 10
+    clip: {fileID: 8300000, guid: 1768f4aedcdfbe146b5e5a77fb95940c, type: 3}
+    volume: 1
+  - kind: 11
+    clip: {fileID: 8300000, guid: edf54da625b2ce548adba444e898a94b, type: 3}
+    volume: 1
+  - kind: 12
+    clip: {fileID: 8300000, guid: bdfb2e5ba4ca2d341a7998694e94fe30, type: 3}
+    volume: 1
+  - kind: 13
+    clip: {fileID: 8300000, guid: f6dcd52f434cb5147832044117a6579c, type: 3}
+    volume: 1
+  - kind: 14
+    clip: {fileID: 8300000, guid: f029f7c7f84dc4a428c7f213658d1952, type: 3}
+    volume: 1
+  - kind: 15
+    clip: {fileID: 8300000, guid: 71531dd63d7c20d49a79b13d502c19ee, type: 3}
+    volume: 1
 --- !u!4 &322510388
 Transform:
   m_ObjectHideFlags: 0
@@ -1650,6 +1743,7 @@ GameObject:
   - component: {fileID: 455905381}
   - component: {fileID: 455905380}
   - component: {fileID: 455905382}
+  - component: {fileID: 455905383}
   m_Layer: 5
   m_Name: Pivot Tractor
   m_TagString: Untagged
@@ -1672,8 +1766,8 @@ RectTransform:
   m_Father: {fileID: 1779942979}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.48, y: 0.55}
-  m_AnchorMax: {x: 0.48, y: 0.55}
+  m_AnchorMin: {x: 0.44, y: 0.55}
+  m_AnchorMax: {x: 0.44, y: 0.55}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1731,6 +1825,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 2
   _transportSound: 5
+--- !u!114 &455905383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455905378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 455905379}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: -110, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: 160, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &485439555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3940,6 +4056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animation: {fileID: 83179758}
+  _cachedTransform: {fileID: 1186577862}
   _animationBlocks:
   - kind: 0
     animation:
@@ -4934,17 +5051,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d889226017b32384db1425515647cd49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _referenceScreenHeight: 852
+  _referenceSize: {x: 1400, y: 852}
+  _rectangleRatio:
+    screenSizeFactor: 2.2
+    scale: 1
+  _squareRatio:
+    screenSizeFactor: 1
+    scale: 0.75
   _topRobotBarOffset: 74
-  _conveyerWidth: 352
+  _conveyerWidth: 340
   _dragField: {fileID: 149823851}
   _leftAnswerAnchor: {fileID: 878236169}
   _rightAnswerAnchor: {fileID: 1979709390}
   _starsPerLevel: 3
   _colorBlocks:
-  - {fileID: 11400000, guid: 85f4ceb42bd18954f81aef3869829502, type: 2}
-  - {fileID: 11400000, guid: 2b079702da140fc44bbfcf78f150502b, type: 2}
   - {fileID: 11400000, guid: 8159d953eebd28c41b4183ffa5501c1c, type: 2}
+  - {fileID: 11400000, guid: 22ca95cc68be4174593a881890bb9d3a, type: 2}
+  - {fileID: 11400000, guid: ad74ba25e1804174e93043984af5d6b4, type: 2}
+  - {fileID: 11400000, guid: 45865cee5f28d6f4bae52b6ecc5c6969, type: 2}
+  - {fileID: 11400000, guid: 85f4ceb42bd18954f81aef3869829502, type: 2}
+  - {fileID: 11400000, guid: 557ec5a25331325409910cd54048b3eb, type: 2}
+  - {fileID: 11400000, guid: 2bd434f348efdf14185f154dd865af65, type: 2}
+  - {fileID: 11400000, guid: dfa75038ee667e5419fefd369ada078d, type: 2}
+  - {fileID: 11400000, guid: c15b74d8c2af9c449a47bb1c47cda859, type: 2}
+  - {fileID: 11400000, guid: 9338594fe1164aa4e805629cff51dca9, type: 2}
+  - {fileID: 11400000, guid: 2b079702da140fc44bbfcf78f150502b, type: 2}
 --- !u!1 &1448239259
 GameObject:
   m_ObjectHideFlags: 0
@@ -5524,6 +5655,7 @@ GameObject:
   - component: {fileID: 1616617803}
   - component: {fileID: 1616617802}
   - component: {fileID: 1616617804}
+  - component: {fileID: 1616617805}
   m_Layer: 5
   m_Name: Pivot Bike
   m_TagString: Untagged
@@ -5546,8 +5678,8 @@ RectTransform:
   m_Father: {fileID: 548445644}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4, y: 0.38}
-  m_AnchorMax: {x: 0.4, y: 0.38}
+  m_AnchorMin: {x: 0.47, y: 0.38}
+  m_AnchorMax: {x: 0.47, y: 0.38}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5605,6 +5737,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 0
   _transportSound: 4
+--- !u!114 &1616617805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616617800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 1616617801}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: 200, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: -130, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &1683567323
 GameObject:
   m_ObjectHideFlags: 0
@@ -5656,6 +5810,7 @@ GameObject:
   - component: {fileID: 1734980207}
   - component: {fileID: 1734980206}
   - component: {fileID: 1734980208}
+  - component: {fileID: 1734980209}
   m_Layer: 5
   m_Name: Pivot Helicopter
   m_TagString: Untagged
@@ -5678,8 +5833,8 @@ RectTransform:
   m_Father: {fileID: 548445644}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.55, y: 0.82}
-  m_AnchorMax: {x: 0.55, y: 0.82}
+  m_AnchorMin: {x: 0.62, y: 0.82}
+  m_AnchorMax: {x: 0.62, y: 0.82}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5737,6 +5892,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 3
   _transportSound: 6
+--- !u!114 &1734980209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734980204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 1734980205}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: 125, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: -140, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &1764197972
 GameObject:
   m_ObjectHideFlags: 0
@@ -6032,6 +6209,7 @@ GameObject:
   - component: {fileID: 1827135130}
   - component: {fileID: 1827135129}
   - component: {fileID: 1827135131}
+  - component: {fileID: 1827135132}
   m_Layer: 5
   m_Name: Pivot Car
   m_TagString: Untagged
@@ -6054,8 +6232,8 @@ RectTransform:
   m_Father: {fileID: 1779942979}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.55, y: 0.2}
-  m_AnchorMax: {x: 0.55, y: 0.2}
+  m_AnchorMin: {x: 0.495, y: 0.21}
+  m_AnchorMax: {x: 0.495, y: 0.21}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6113,6 +6291,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 1
   _transportSound: 3
+--- !u!114 &1827135132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827135127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 1827135128}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: -190, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: 110, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &1848208768
 GameObject:
   m_ObjectHideFlags: 0
@@ -6326,7 +6526,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 352, y: 0}
+  m_SizeDelta: {x: 340, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1864381746
 MonoBehaviour:
@@ -6341,6 +6541,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cachedTransform: {fileID: 166041983}
+  _slaledTargets:
+  - {fileID: 1864381745}
+  - {fileID: 166041983}
   _emptyCell: {fileID: 803424122}
   _startCell: {fileID: 1008774423}
   _transportCell: {fileID: 800523617}
@@ -6735,6 +6938,7 @@ GameObject:
   - component: {fileID: 2036369421}
   - component: {fileID: 2036369420}
   - component: {fileID: 2036369422}
+  - component: {fileID: 2036369423}
   m_Layer: 5
   m_Name: Pivot Car
   m_TagString: Untagged
@@ -6757,8 +6961,8 @@ RectTransform:
   m_Father: {fileID: 548445644}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.75, y: 0.2}
-  m_AnchorMax: {x: 0.75, y: 0.2}
+  m_AnchorMin: {x: 0.78, y: 0.21}
+  m_AnchorMax: {x: 0.78, y: 0.21}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6816,6 +7020,28 @@ MonoBehaviour:
   _backgroundsPanel: {fileID: 825804832}
   _kind: 1
   _transportSound: 3
+--- !u!114 &2036369423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036369418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7deafef04e7a25941ae2c6bc4c1cebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cachedTransform: {fileID: 2036369419}
+  _targetResolution: {x: 1400, y: 852}
+  _targetPosition: {x: 0, y: 0}
+  _squarePosition:
+    resolutionFactor: 1
+    deltaPosition: {x: 20, y: 0}
+  _rectPosition:
+    resolutionFactor: 2.2
+    deltaPosition: {x: -50, y: 0}
+  _showDebugLogs: 0
 --- !u!1 &2047782145
 GameObject:
   m_ObjectHideFlags: 0
@@ -7111,3 +7337,19 @@ MonoBehaviour:
     text: green
   - speach: 7
     text: black
+  - speach: 8
+    text: blue
+  - speach: 9
+    text: brown
+  - speach: 10
+    text: gray
+  - speach: 11
+    text: orange
+  - speach: 12
+    text: pink
+  - speach: 13
+    text: purple
+  - speach: 14
+    text: red
+  - speach: 15
+    text: white

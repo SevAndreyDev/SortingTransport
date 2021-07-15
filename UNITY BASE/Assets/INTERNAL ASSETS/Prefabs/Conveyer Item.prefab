@@ -93,10 +93,10 @@ MonoBehaviour:
   _image: {fileID: 3515982705144670038}
   _canvasScaleFactor: 0.011
   _toConveyer:
-    _duration: 0.8
+    _duration: 0.6
     _ease: 1
   _toSlot:
-    _duration: 0.6
+    _duration: 2
     _ease: 1
   _conveyerScale:
     _duration: 0.25

@@ -21,6 +21,9 @@ namespace EnglishKids.SortingTransport
         // Fields
         //==================================================
 
+        [Header("Scale Width Objects")]
+        [SerializeField] private RectTransform[] _slaledTargets;
+
         [Header("Prefabs")]
         [SerializeField] private ViewObject _emptyCell;
         [SerializeField] private ViewObject _startCell;
@@ -53,6 +56,11 @@ namespace EnglishKids.SortingTransport
         protected override void Init()
         {
             base.Init();
+
+            foreach (var item in _slaledTargets)
+            {
+                item.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _manager.ConveyerWidth * _manager.ScaleFactor);
+            }
             
             _spawner = Spawner.Instance;
 
@@ -64,22 +72,23 @@ namespace EnglishKids.SortingTransport
             StartCoroutine(SynchronizeMovingAudioProcess());
         }
 
-        public void BuildStartCell()
+        public void BuildCutCell()
         {
             if (!_wasBuildedCutScene)            
             {
                 // Separate cell
                 ViewObject cell = Instantiate(_emptyCell, this.CachedTransform);
-                cell.Height = _manager.ReferenceScreenHeight;
+                cell.Height = _manager.CanvasHeight;
                 cell.SetActive(true);
 
                 // Target cell
                 cell = Instantiate(_startCell, this.CachedTransform);
+                ((CutCell)cell).Initialize();
                 cell.SetActive(true);
 
                 // Separate cell
                 cell = Instantiate(_emptyCell, this.CachedTransform);
-                cell.Height = (_manager.ReferenceScreenHeight - _startCell.Height) * GameConstants.HALF_FACTOR;
+                cell.Height = (_manager.CanvasHeight - _startCell.Height) * GameConstants.HALF_FACTOR;
                 cell.SetActive(true);
 
                 _wasBuildedCutScene = true;
@@ -103,7 +112,7 @@ namespace EnglishKids.SortingTransport
             if (itemsCount % _itemsInTransportCell != 0)
                 blocksCount++;
 
-            float topOffset = _manager.TopRobotBarOffset * GameConstants.HALF_FACTOR;
+            float topOffset = _manager.TopRobotBarOffset * _manager.ScaleFactor * GameConstants.HALF_FACTOR;
 
             for (int i = 0; i < blocksCount; i++)
             {
@@ -113,7 +122,7 @@ namespace EnglishKids.SortingTransport
                 if (!_wasBuildedGameSCene)
                 {
                     transportCell = Instantiate(_transportCell, this.CachedTransform) as TransportCell;
-                    transportCell.Height = _manager.ReferenceScreenHeight - topOffset;
+                    transportCell.Height = _manager.CanvasHeight - topOffset;
                     transportCell.SetActive(true);
 
                     _transportCellList.Add(transportCell);
@@ -146,8 +155,8 @@ namespace EnglishKids.SortingTransport
 
         public void BuildStarCell(StarsView starsView)
         {
-            float topOffset = _manager.TopRobotBarOffset * GameConstants.HALF_FACTOR;
-            float sumHeight = _manager.ReferenceScreenHeight - topOffset;
+            float topOffset = _manager.TopRobotBarOffset * _manager.ScaleFactor * GameConstants.HALF_FACTOR;
+            float sumHeight = _manager.CanvasHeight - topOffset;
             float cellHeight = sumHeight / _itemsInTransportCell;
 
             // Main Cell
@@ -190,17 +199,17 @@ namespace EnglishKids.SortingTransport
             {
                 case GameStates.CutScene:
                     {
-                        float height = (_startCell.CachedTransform.rect.height + _manager.ReferenceScreenHeight) * GameConstants.HALF_FACTOR;
+                        float height = (_startCell.CachedTransform.rect.height + _manager.CanvasHeight) * GameConstants.HALF_FACTOR;
                         Move(_cutSceneTween, height);
                     }
                     break;
 
                 case GameStates.Game:
-                    Move(_gameSceneTween, _manager.ReferenceScreenHeight);                    
+                    Move(_gameSceneTween, _manager.CanvasHeight);                    
                     break;
 
                 case GameStates.StarMode:
-                    Move(_gameSceneTween, _manager.ReferenceScreenHeight);
+                    Move(_gameSceneTween, _manager.CanvasHeight);
                     break;
             }
         }

@@ -29,7 +29,7 @@ namespace EnglishKids.SortingTransport
         #region Events
         private void OnStartCutScene()
         {            
-            _conveyer.BuildStartCell();
+            _conveyer.BuildCutCell();
         }
         #endregion
     }

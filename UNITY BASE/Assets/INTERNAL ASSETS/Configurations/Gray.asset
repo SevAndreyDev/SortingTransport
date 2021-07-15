@@ -12,28 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb724259c75c7b49b721c1662180d0d, type: 3}
   m_Name: Gray
   m_EditorClassIdentifier: 
-  _kind: 2
-  _speach: 7
-  _background: {fileID: 21300000, guid: 25c099b72c6c3d546896639f393fc506, type: 3}
+  _kind: 5
+  _speach: 10
+  _background: {fileID: 21300000, guid: 811fb4871fb040d43b04ffafc58219b0, type: 3}
   _dragScaleFactor: 1.1
   _transportElements:
   - kind: 0
-    sprite: {fileID: 21300000, guid: f959f7e00639bba40b36d30c22da244a, type: 3}
+    sprite: {fileID: 21300000, guid: d5149750c03bd4442b88a6d41fd89c00, type: 3}
     conveyerScale: 1
     scale: 1
     speach: 2
   - kind: 1
-    sprite: {fileID: 21300000, guid: c1deeb9644b739f48b139a1d4c485d33, type: 3}
+    sprite: {fileID: 21300000, guid: bc4001c4df19fe2418f821ffcbbb2e14, type: 3}
     conveyerScale: 1
     scale: 1
     speach: 1
   - kind: 2
-    sprite: {fileID: 21300000, guid: 8455ef1fe8e953c4abba5d09b627b46d, type: 3}
+    sprite: {fileID: 21300000, guid: c13735955a3882547a09967000122c81, type: 3}
     conveyerScale: 0.85
     scale: 0.7
     speach: 3
   - kind: 3
-    sprite: {fileID: 21300000, guid: 427002d1bee48a94ea202579076eb6b9, type: 3}
+    sprite: {fileID: 21300000, guid: 8f62af6fd9f64464aaf44dd945850518, type: 3}
     conveyerScale: 0.82
     scale: 0.8
     speach: 4

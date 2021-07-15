@@ -16,6 +16,15 @@ namespace EnglishKids.SortingTransport
 
         private void Awake()
         {
+            
+        }
+
+        protected override void Init()
+        {
+            base.Init();
+
+            _content.transform.localScale = Vector3.one * GameManager.Instance.ScaleFactor;
+
             GameManager.OnStartGame -= OnStartGame;
             GameManager.OnStartGame += OnStartGame;
             GameManager.OnStartResetGame -= OnResetGame;

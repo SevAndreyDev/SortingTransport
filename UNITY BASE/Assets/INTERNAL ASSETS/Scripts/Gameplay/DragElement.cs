@@ -70,7 +70,7 @@ namespace EnglishKids.SortingTransport
         {
             base.Init();
 
-            _referenceDistance = _manager.ScaledScreenWidth;            
+            _referenceDistance = _manager.CanvasWidth;            
             _startPosition = this.CachedTransform.localPosition;
         }
 
@@ -88,7 +88,7 @@ namespace EnglishKids.SortingTransport
             _image.SetNativeSize();
             _image.raycastTarget = true;
 
-            this.CachedTransform.localScale = Vector3.one * _transportData.conveyerScale;
+            this.CachedTransform.localScale = Vector3.one * _transportData.conveyerScale * _manager.ScaleFactor;
 
             OnElementWasActivated?.Invoke(_transportData.kind, _data.Kind, OnElementsWasActivatedCallback);
         }
@@ -129,7 +129,7 @@ namespace EnglishKids.SortingTransport
                         _eventManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), _data.Kind, _transportData.speach);
 
                         var sequance = DOTween.Sequence();
-                        sequance.Append(this.CachedTransform.DOScale(_data.DragScaleFactor, _conveyerScale.Duration)).SetEase(_conveyerScale.Ease);
+                        sequance.Append(this.CachedTransform.DOScale(_data.DragScaleFactor * _manager.ScaleFactor, _conveyerScale.Duration)).SetEase(_conveyerScale.Ease);
 
                         _scaleUpSequence = sequance;
 
@@ -168,8 +168,9 @@ namespace EnglishKids.SortingTransport
             _eventManager.InvokeEvent(GameEvents.Action.ToString());
 
             if (_state == States.Drag)
-            {
-                this.CachedTransform.localPosition += new Vector3(eventData.delta.x, eventData.delta.y, 0f);
+            {                                
+                Vector3 position = _manager.GetCanvasPoint(eventData.position);
+                this.CachedTransform.localPosition = position;
             }
         }
 
@@ -197,7 +198,7 @@ namespace EnglishKids.SortingTransport
 
                 float duration = CalculateDuration(_targetPivot.CachedTransform.position, _toSlot.Duration);
                 sequance.Append(this.CachedTransform.DOMove(_targetPivot.CachedTransform.position, duration)).SetEase(_toSlot.Ease);
-                sequance.Insert(0f, this.CachedTransform.DOScale(_transportData.scale, Mathf.Min(duration, _slotScale.Duration))).SetEase(_slotScale.Ease);
+                sequance.Insert(0f, this.CachedTransform.DOScale(_transportData.scale * _manager.ScaleFactor, Mathf.Min(duration, _slotScale.Duration))).SetEase(_slotScale.Ease);
 
                 sequance.OnComplete(() =>
                 {
@@ -220,7 +221,7 @@ namespace EnglishKids.SortingTransport
 
                 float duration = CalculateDuration(_conveyerPosition, _toConveyer.Duration);
                 sequance.Append(this.CachedTransform.DOLocalMove(_startPosition, duration)).SetEase(_toConveyer.Ease);
-                sequance.Insert(0f, this.CachedTransform.DOScale(_transportData.conveyerScale, Mathf.Min(_conveyerScale.Duration, duration))).SetEase(_conveyerScale.Ease);
+                sequance.Insert(0f, this.CachedTransform.DOScale(_transportData.conveyerScale * _manager.ScaleFactor, Mathf.Min(_conveyerScale.Duration, duration))).SetEase(_conveyerScale.Ease);
 
                 sequance.OnComplete(() =>
                 {

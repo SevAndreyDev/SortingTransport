@@ -26,7 +26,8 @@ namespace EnglishKids.SortingTransport
 
         private GameManager _manager;
         private Vector3 _cutScenePosition;
-        private float _robotSize;
+
+        private float _scaledOffset;
         
         //==================================================
         // Properties
@@ -41,11 +42,9 @@ namespace EnglishKids.SortingTransport
         public void Initialize(SpineAnimationController robot = null)
         {
             _manager = GameManager.Instance;
-            _cutScenePosition = _target.localPosition;
-            if (_calculateRobotOffset && robot != null)
-            {
-                _robotSize = _gameSceneOffset;
-            }
+
+            _cutScenePosition = _target.localPosition;                        
+            _scaledOffset = _gameSceneOffset * _manager.ScaleFactor;
         }
 
         public void MoveToCutScenePosition(bool immediately = false)
@@ -57,8 +56,8 @@ namespace EnglishKids.SortingTransport
         public void MoveToGameScenePosition(bool immediately = false)
         {
             if (!this.IsTweenPlaying)
-            {
-                float offset = _calculateRobotOffset ? ((_manager.ReferenceScreenHeight + _gameSceneOffset) * GameConstants.HALF_FACTOR - _manager.TopRobotBarOffset) : _manager.ReferenceScreenHeight;
+            {                
+                float offset = _calculateRobotOffset ? ((_manager.CanvasHeight + _scaledOffset) * GameConstants.HALF_FACTOR - _manager.TopRobotBarOffset * _manager.ScaleFactor) : _manager.CanvasHeight;
                 Vector3 targetPoint = _cutScenePosition + Vector3.up * offset;
 
                 PlayTweenAnimation(targetPoint, _gameSceneTween, immediately);

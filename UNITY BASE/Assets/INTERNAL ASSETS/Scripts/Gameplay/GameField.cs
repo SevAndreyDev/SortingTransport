@@ -59,6 +59,7 @@ namespace EnglishKids.SortingTransport
         {
             _audio.PlaySpeach(this.ColorBlockData.ColorSpeach);
             _eventManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), this.ColorBlockData.Kind, this.ColorBlockData.ColorSpeach);
+            _eventManager.InvokeEvent(GameEvents.Action.ToString());
         }
         #endregion
     }

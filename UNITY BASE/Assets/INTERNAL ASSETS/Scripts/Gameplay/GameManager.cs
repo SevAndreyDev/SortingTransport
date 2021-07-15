@@ -35,7 +35,7 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private RectTransform _leftAnswerAnchor;
         [SerializeField] private RectTransform _rightAnswerAnchor;
         [SerializeField] private int _starsPerLevel;
-
+                
         [Header("Configuration Data")]
         [SerializeField] private ColorBlock[] _colorBlocks;
 

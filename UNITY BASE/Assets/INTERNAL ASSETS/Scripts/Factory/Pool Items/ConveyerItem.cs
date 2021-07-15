@@ -9,7 +9,13 @@ namespace EnglishKids.SortingTransport
         //==================================================
                 
         [SerializeField] private DragElement _dragElement;
-                                
+
+        //==================================================
+        // Properties
+        //==================================================
+
+        public bool InSlot { get { return _dragElement.InSlot; } }
+
         //==================================================
         // Methods
         //==================================================
@@ -32,10 +38,16 @@ namespace EnglishKids.SortingTransport
         {
             base.Subscribe(subscribe);
 
+            _eventManager.RefreshEventListener(GameEvents.PrepareToResetGame.ToString(), OnPrepareToResetGame, subscribe);
             _eventManager.RefreshEventListener(GameEvents.ResetGameSceneObjects.ToString(), OnResetGame, subscribe);
         }
 
         #region Events
+        private void OnPrepareToResetGame(object[] args)
+        {
+            _dragElement.ConnectToPivot();
+        }
+
         private void OnResetGame(object[] args)
         {             
             Deactivate();

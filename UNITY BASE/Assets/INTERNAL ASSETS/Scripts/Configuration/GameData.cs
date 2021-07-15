@@ -9,7 +9,16 @@ namespace EnglishKids.SortingTransport
     public enum ColorKinds
     {
         Yellow,
-        Green
+        Green,
+        Black,
+        Blue,
+        Brown,
+        Gray,
+        Orange,
+        Pink,
+        Purple,
+        Red,
+        White
     }
 
     public enum TransportKinds
@@ -23,13 +32,17 @@ namespace EnglishKids.SortingTransport
     public enum PoolObjectKinds
     {
         ConveyerItem,
-        Star
+        Star,
+        StarEffect,
+        Cloud
     }
 
     public enum GameEvents
     {
         RefreshSpeachButton,
-        ResetGameSceneObjects
+        PrepareToResetGame,
+        ResetGameSceneObjects,
+        Action
     }
 
     public class GameConstants

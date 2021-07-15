@@ -12,7 +12,11 @@ namespace EnglishKids.SortingTransport
         Car,
         Bike,
         Tractor,
-        Helicopter
+        Helicopter,
+        CorrectAnswer,
+        WrongAnswer,
+        UploadYellowPaint,
+        RobotWork
     }
 
     public enum Speach
@@ -23,7 +27,16 @@ namespace EnglishKids.SortingTransport
         Tractor,
         Helicopter,
         Yellow,
-        Green
+        Green,
+        Black,
+        Blue,
+        Brown,
+        Gray,
+        Orange,
+        Pink,
+        Purple,
+        Red,
+        White
     }
         
     public class AudioManager : MonoSingleton<AudioManager>
@@ -70,7 +83,7 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private SpeachTrack[] _speaches;
 
         private List<AudioSource> _soundSources;
-        private SpeachTrack _speachOrder;
+        private Queue<SpeachTrack> _speachOrder;
 
         //==================================================
         // Methods
@@ -81,6 +94,7 @@ namespace EnglishKids.SortingTransport
             base.Init();
                         
             _soundSources = new List<AudioSource>();
+            _speachOrder = new Queue<SpeachTrack>();
 
             for (int i = 0; i < _maxSoundSourceCount; i++)
             {
@@ -123,6 +137,16 @@ namespace EnglishKids.SortingTransport
                 _musicSource.Play();
 
                 yield return new WaitForSeconds(track.clip.length);
+            }
+        }
+
+        public void StopSound(Audio kind)
+        {
+            AudioTrack track = FindTrack(_sounds, kind);
+            foreach (var item in _soundSources)
+            {
+                if (item.isPlaying && item.clip.name.Equals(track.clip.name))
+                    item.Stop();
             }
         }
 
@@ -194,9 +218,12 @@ namespace EnglishKids.SortingTransport
             }
         }
 
-        public void PlaySpeach(Speach speachSound)
+        public void PlaySpeach(params Speach[] speachSounds)
         {
-            _speachOrder = FindTrack(_speaches, speachSound);
+            _speachOrder.Clear();
+
+            for (int i = 0; i < speachSounds.Length; i++)
+                _speachOrder.Enqueue(FindTrack(_speaches, speachSounds[i]));
         }
 
         private IEnumerator PlayingSpeachProcess()
@@ -209,14 +236,15 @@ namespace EnglishKids.SortingTransport
                 }
                 else
                 {
-                    if (_speachOrder != null)
+                    if (_speachOrder.Count > 0)
                     {
-                        _speachSource.clip = _speachOrder.clip;
-                        _speachSource.volume = _speachVolume * _speachOrder.volume;
+                        SpeachTrack track = _speachOrder.Dequeue();
+
+                        _speachSource.clip = track.clip;
+                        _speachSource.volume = _speachVolume * track.volume;
                         _speachSource.Play();
 
-                        float duration = _speachOrder.clip.length;
-                        _speachOrder = null;
+                        float duration = track.clip.length;
 
                         yield return new WaitForSeconds(duration);
                     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System;
 using UnityEngine;
 using DG.Tweening;
@@ -59,6 +60,8 @@ namespace EnglishKids.SortingTransport
             _starsList = new List<ViewObject>();
 
             _startPosition = this.CachedTransform.anchoredPosition;
+
+            StartCoroutine(SynchronizeMovingAudioProcess());
         }
 
         public void BuildStartCell()
@@ -206,18 +209,45 @@ namespace EnglishKids.SortingTransport
         {
             this.IsMoving = true;
 
+            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+
             Vector3 position = this.CachedTransform.localPosition;
             Vector3 target = position + Vector3.down * distance;
 
             var secuance = DOTween.Sequence();
             secuance.Append(this.CachedTransform.DOLocalMove(target, animation.duration)).SetEase(animation.ease);
-            _audio.PlaySound(Audio.Conveyer);
-
+            
             secuance.OnComplete(() =>
             {
-                _audio.PlaySound(Audio.Conveyer);
-                this.IsMoving = false;                                    
+                this.IsMoving = false;
+                _audio.StopSound(Audio.Conveyer);
+
+                _eventManager.InvokeEvent(GameEvents.Action.ToString());
             });            
+        }
+
+        private IEnumerator SynchronizeMovingAudioProcess()
+        {
+            while (true)
+            {
+                if (this.IsMoving)
+                {
+                    _audio.PlaySingleSound(Audio.Conveyer);
+                }
+
+                yield return null;
+            }
+        }
+
+        public List<ConveyerItem> GetActualConveyerItemsList()
+        {
+            if (_transportCellList == null || _transportCellList.Count == 0 || _currentCellIndex >= _transportCellList.Count)
+                return null;
+
+            TransportCell cell = _transportCellList[_currentCellIndex];
+            List<ConveyerItem> list = new List<ConveyerItem>(cell.GetComponentsInChildren<ConveyerItem>(false));
+
+            return list;
         }
 
         private void FillList(List<ConveyerItem> list, ColorBlock block)
@@ -242,6 +272,7 @@ namespace EnglishKids.SortingTransport
 
                 ConveyerItem item = list[index];
                 item.CachedTransform.SetParent(cell.CachedTransform);
+                item.CachedTransform.localScale = Vector3.one;
                 item.SetActive(true);
 
                 list.RemoveAt(index);

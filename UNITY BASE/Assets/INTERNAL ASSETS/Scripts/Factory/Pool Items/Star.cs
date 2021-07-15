@@ -1,3 +1,4 @@
+using System.Collections;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine;
@@ -7,6 +8,13 @@ namespace EnglishKids.SortingTransport
 {
     public class Star : PoolItem, IPointerDownHandler
     {
+        private enum States
+        {
+            Idle,
+            Moving,
+            InSlot
+        }
+
         [Serializable]
         private class TweenAnimation
         {
@@ -18,14 +26,24 @@ namespace EnglishKids.SortingTransport
         // Fields
         //==================================================
 
-        [Space]
+        [Header("Base Settings")]
         [SerializeField] private TweenAnimation _moveTween;
         [SerializeField] private TweenAnimation _scaleTween;
         [SerializeField] private float _toScaleFactor;
 
-        private RectTransform _target;
-        private bool _isMoving;
+        [Header("Particles Settings")]
+        [SerializeField] private ParticleSystem _particles;
+        [SerializeField] private float _particlesDuration = 2.5f;
+        [SerializeField] private float _separateDuration = 0.25f;
 
+        private RectTransform _target;
+
+        private bool _checkParticles;
+        private bool _resetParticles;
+        private float _duration;
+
+        private States _state;
+        
         //==================================================
         // Properties
         //==================================================
@@ -37,19 +55,76 @@ namespace EnglishKids.SortingTransport
         public void Activate(StarsView uiTarget)
         {
             _target = uiTarget.CachedTransform;
+
+            _resetParticles = false;
+            _duration = _particlesDuration;
+            _checkParticles = true;
+
+            _state = States.Idle;
+
+            _particles.Play(true);
         }
                 
         public void Deactivate()
         {
-            _isMoving = false;
+            _state = States.Idle;
+            _checkParticles = false;
+
             this.Pool.Put(this.gameObject);
         }
 
+        private void Update()
+        {
+            if (!_checkParticles)
+                return;
+            
+            switch (_state)
+            {
+                case States.Idle:
+                case States.Moving:
+                    if (_resetParticles)
+                    {
+                        if (_particles.isPlaying)
+                            return;
+
+                        if (_duration > 0f)
+                        {
+                            _duration -= Time.deltaTime;
+                            return;
+                        }                        
+
+                        _particles.Play(true);
+                        _duration = _particlesDuration;
+                        _resetParticles = false;
+                    }
+                    else
+                    {
+                        _duration -= Time.deltaTime;
+
+                        if (_duration <= 0f)
+                        {
+                            _duration = _separateDuration;
+                            _particles.Stop(true);
+                            _resetParticles = true;
+                        }
+                    }
+                    break;
+
+                case States.InSlot:
+                    //if (_particles.isPlaying)
+                    //    return;
+
+                    Deactivate();
+                    break;
+            }
+        }
+                               
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (!_isMoving)
+            if (_state == States.Idle)
             {
-                _isMoving = true;
+                _state = States.Moving;
+
                 this.CachedTransform.SetParent(_manager.DragField);
 
                 var sequance = DOTween.Sequence();
@@ -59,7 +134,9 @@ namespace EnglishKids.SortingTransport
                 sequance.OnComplete(() =>
                 {
                     _manager.Stars++;
-                    Deactivate();
+                    _state = States.InSlot;
+                    //_particles.Stop(true);
+                    //Deactivate();
                 });
             }
         }

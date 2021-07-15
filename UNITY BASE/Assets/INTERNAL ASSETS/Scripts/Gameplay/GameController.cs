@@ -16,11 +16,15 @@ namespace EnglishKids.SortingTransport
         [SerializeField] private Mike _mike;
 
         [Header("Base Settings")]
+        [SerializeField] private HelpController _helpController;
         [SerializeField] private StarsView _starsView;
         [SerializeField] private GameStatePositionTween _backgroundTween;
         [SerializeField] private GameStatePositionTween _robotTween;
         [SerializeField] private GameField _leftField;
         [SerializeField] private GameField _rightField;
+
+        [Header("Effects")]
+        [SerializeField] private CloudController _cloudController;
 
         [Header("Speach Buttons")]
         [SerializeField] private SpeachButton _leftButton;
@@ -61,6 +65,9 @@ namespace EnglishKids.SortingTransport
             _backgroundTween.Initialize();
             _robotTween.Initialize(_robot);
 
+            _cloudController.Initialize();
+            _helpController.Initialize();
+
             _leftField.Initialize();
             _rightField.Initialize();
         }
@@ -83,9 +90,22 @@ namespace EnglishKids.SortingTransport
                         
             // Robot animations block
             _robot.Play(Robot.AnimationKinds.WorkUploadYellow);
-            yield return new WaitWhile(() => _robot.IsPlaying);
+            while (_robot.IsPlaying)
+            {
+                _audio.PlaySingleSound(Audio.UploadYellowPaint);
+                yield return null;
+            }
+            _audio.StopSound(Audio.UploadYellowPaint);
+            
             _robot.Play(Robot.AnimationKinds.WorkBackIndicator);
-            yield return new WaitWhile(() => _robot.IsPlaying);
+            while (_robot.IsPlaying)
+            {
+                _audio.PlaySingleSound(Audio.RobotWork);
+                yield return null;
+            }
+            _audio.StopSound(Audio.RobotWork);
+            //yield return new WaitWhile(() => _robot.IsPlaying);
+            
             _robot.Play(Robot.AnimationKinds.WorkSteam);
             _audio.PlaySound(Audio.Steam);
             yield return new WaitWhile(() => _robot.IsPlaying);
@@ -123,15 +143,22 @@ namespace EnglishKids.SortingTransport
             _leftButton.Activate();
             _rightButton.Activate();
 
+            _cloudController.Activate();
+
             _conveyer.BuildTransportCell();
             yield return new WaitForEndOfFrame();
             _conveyer.Move();
+
+            yield return new WaitWhile(() => _conveyer.IsMoving);
+
+            _helpController.Activate(_conveyer);
         }
                 
         private IEnumerator StarModeProcess()
         {
             _leftButton.Deactivate();
             _rightButton.Deactivate();
+            _helpController.Deactivate();
 
             _conveyer.BuildStarCell(_starsView);
             yield return new WaitForSeconds(SHORT_DELAY);
@@ -144,7 +171,13 @@ namespace EnglishKids.SortingTransport
         {
             yield return new WaitForSeconds(SHORT_DELAY);
 
+            _cloudController.Deactivate();
             _starsView.Hide();
+
+            yield return new WaitWhile(() => _cloudController.IsFading);
+            yield return new WaitForSeconds(SHORT_DELAY);
+
+            _eventManager.InvokeEvent(GameEvents.PrepareToResetGame.ToString());
             
             _backgroundTween.MoveToCutScenePosition();
             _robotTween.MoveToCutScenePosition();

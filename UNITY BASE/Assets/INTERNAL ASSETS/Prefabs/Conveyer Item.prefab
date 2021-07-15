@@ -91,12 +91,19 @@ MonoBehaviour:
   _cachedTransform: {fileID: 3515982705144670039}
   _conveyerPanel: {fileID: 3515982705231201566}
   _image: {fileID: 3515982705144670038}
+  _canvasScaleFactor: 0.011
   _toConveyer:
     _duration: 0.8
     _ease: 1
   _toSlot:
-    _duration: 1.8
+    _duration: 0.6
     _ease: 1
+  _conveyerScale:
+    _duration: 0.25
+    _ease: 1
+  _slotScale:
+    _duration: 0.4
+    _ease: 0
 --- !u!1 &3515982705231201567
 GameObject:
   m_ObjectHideFlags: 0

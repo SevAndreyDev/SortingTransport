@@ -91,6 +91,8 @@ namespace EnglishKids.SortingTransport
 
         public void OnButtonClick()
         {
+            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+
             if (_isActive)
             {
                 _audio.PlaySpeach(_currentSpeach);

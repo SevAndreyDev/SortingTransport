@@ -32,16 +32,16 @@ namespace EnglishKids.SortingTransport
             Initialize();
         }
 
-        public void Activate()
+        public override void Activate(params object[] args)
         {
+            base.Activate(args);
+        
             ColorBlock block = _orientation == Orientations.Left ? _manager.LeftDataBlock : _manager.RightDataBlock;
             _colorKind = block.Kind;
                         
             SetText(_data.GetText(block.ColorSpeach));
             _currentSpeach = block.ColorSpeach;
-
-            Subscribe(EventManager.Subscribes.Subscribe);
-
+                        
             // Tween
             float duration = Mathf.Abs(1f - _canvasGroup.alpha) * _fadeTween.Duration;
 
@@ -51,9 +51,9 @@ namespace EnglishKids.SortingTransport
             _isActive = true;
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
-            Subscribe(EventManager.Subscribes.Subscribe);
+            base.Deactivate();
 
             float duration = _canvasGroup.alpha * _fadeTween.Duration;
 
@@ -66,8 +66,8 @@ namespace EnglishKids.SortingTransport
         protected override void Subscribe(EventManager.Subscribes subscribe)
         {
             base.Subscribe(subscribe);
-
-            _eventManager.RefreshEventListener(GameEvents.RefreshSpeachButton.ToString(), OnRefreshSpeachButton, subscribe);
+            
+            _eventsManager.RefreshEventListener(GameEvents.RefreshSpeachButton.ToString(), OnRefreshSpeachButton, subscribe);
         }
 
         private void SetText(string text)
@@ -91,7 +91,7 @@ namespace EnglishKids.SortingTransport
 
         public void OnButtonClick()
         {
-            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
 
             if (_isActive)
             {

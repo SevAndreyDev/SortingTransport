@@ -28,7 +28,7 @@ namespace EnglishKids.SortingTransport
         // Methods
         //==================================================
 
-        protected override void Init()
+        protected override void Init(params object[] args)
         {
             base.Init();
             
@@ -43,8 +43,10 @@ namespace EnglishKids.SortingTransport
             this.CachedTransform.localPosition = position;
         }
 
-        public void Activate()
+        public override void Activate(params object[] args)
         {
+            base.Activate(args);
+        
             this.ColorBlockData = _orientation == Orientations.Left ? _manager.LeftDataBlock : _manager.RightDataBlock;
             _background.sprite = this.ColorBlockData.Background;
 
@@ -58,8 +60,8 @@ namespace EnglishKids.SortingTransport
         public void OnBackgroundClick()
         {
             _audio.PlaySpeach(this.ColorBlockData.ColorSpeach);
-            _eventManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), this.ColorBlockData.Kind, this.ColorBlockData.ColorSpeach);
-            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+            _eventsManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), this.ColorBlockData.Kind, this.ColorBlockData.ColorSpeach);
+            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
         }
         #endregion
     }

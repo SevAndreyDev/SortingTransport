@@ -27,36 +27,36 @@ namespace EnglishKids.SortingTransport
         private Conveyer _conveyer;
         private bool _checkHelp;
         private float _startDuration;
-                
+
         //==================================================
         // Methods
         //==================================================
-        
-        public void Activate(Conveyer conveyer)
+
+        public override void Activate(params object[] args)
         {
-            _conveyer = conveyer;
+            base.Activate(args);
+
+            _conveyer = (Conveyer)args[0];
             _startDuration = _timeToStart;
             _checkHelp = true;
-
-            Subscribe(EventManager.Subscribes.Subscribe);
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
+            base.Deactivate();
+
             _checkHelp = false;
 
             if (_sequence != null)
                 _sequence.Kill();
 
             _cursorCanvas.alpha = 0f;
-
-            Subscribe(EventManager.Subscribes.Unscribe);
         }
 
         protected override void Subscribe(EventManager.Subscribes subscribe)
         {
             base.Subscribe(subscribe);
-            _eventManager.RefreshEventListener(GameEvents.Action.ToString(), OnActionWasInvoke, subscribe);
+            _eventsManager.RefreshEventListener(GameEvents.Action.ToString(), OnActionWasInvoke, subscribe);
         }
 
         private void Update()

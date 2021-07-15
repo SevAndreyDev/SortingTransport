@@ -53,7 +53,7 @@ namespace EnglishKids.SortingTransport
         // Methods
         //==================================================
 
-        protected override void Init()
+        protected override void Init(params object[] args)
         {
             base.Init();
 
@@ -218,7 +218,7 @@ namespace EnglishKids.SortingTransport
         {
             this.IsMoving = true;
 
-            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
 
             Vector3 position = this.CachedTransform.localPosition;
             Vector3 target = position + Vector3.down * distance;
@@ -231,7 +231,7 @@ namespace EnglishKids.SortingTransport
                 this.IsMoving = false;
                 _audio.StopSound(Audio.Conveyer);
 
-                _eventManager.InvokeEvent(GameEvents.Action.ToString());
+                _eventsManager.InvokeEvent(GameEvents.Action.ToString());
             });            
         }
 

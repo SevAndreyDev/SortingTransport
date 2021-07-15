@@ -66,7 +66,7 @@ namespace EnglishKids.SortingTransport
             OnElementWasUsed = null;
         }
 
-        protected override void Init()
+        protected override void Init(params object[] args)
         {
             base.Init();
 
@@ -74,8 +74,13 @@ namespace EnglishKids.SortingTransport
             _startPosition = this.CachedTransform.localPosition;
         }
 
-        public void Activate(ColorBlock data, ColorBlock.TransportElement transport)
+        public override void Activate(params object[] args)
         {
+            base.Activate(args);
+
+            ColorBlock data = (ColorBlock)args[0];
+            ColorBlock.TransportElement transport = (ColorBlock.TransportElement)args[1];
+                        
             Initialize();
             
             _state = States.InConveyer;
@@ -93,8 +98,10 @@ namespace EnglishKids.SortingTransport
             OnElementWasActivated?.Invoke(_transportData.kind, _data.Kind, OnElementsWasActivatedCallback);
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
+            base.Deactivate();
+        
             this.CachedTransform.SetParent(_conveyerPanel);
             this.CachedTransform.localPosition = _startPosition;
         }
@@ -116,7 +123,7 @@ namespace EnglishKids.SortingTransport
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
 
             switch (_state)
             {
@@ -126,7 +133,7 @@ namespace EnglishKids.SortingTransport
                         this.CachedTransform.SetParent(_manager.DragField);
                         _state = States.Drag;
 
-                        _eventManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), _data.Kind, _transportData.speach);
+                        _eventsManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), _data.Kind, _transportData.speach);
 
                         var sequance = DOTween.Sequence();
                         sequance.Append(this.CachedTransform.DOScale(_data.DragScaleFactor * _manager.ScaleFactor, _conveyerScale.Duration)).SetEase(_conveyerScale.Ease);
@@ -141,7 +148,7 @@ namespace EnglishKids.SortingTransport
                     break;
 
                 case States.InSlot:
-                    _eventManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), _data.Kind, _transportData.speach);
+                    _eventsManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), _data.Kind, _transportData.speach);
                     _state = States.TransportSound;
                     break;
             }
@@ -149,7 +156,7 @@ namespace EnglishKids.SortingTransport
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
 
             switch (_state)
             {
@@ -165,7 +172,7 @@ namespace EnglishKids.SortingTransport
                 
         public void OnDrag(PointerEventData eventData)
         {
-            _eventManager.InvokeEvent(GameEvents.Action.ToString());
+            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
 
             if (_state == States.Drag)
             {                                
@@ -204,7 +211,7 @@ namespace EnglishKids.SortingTransport
                 {
                     this.CachedTransform.SetParent(_targetPivot.BackgroundsPanel);
                     _state = States.InSlot;
-                    _eventManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), _data.Kind, _data.ColorSpeach);
+                    _eventsManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), _data.Kind, _data.ColorSpeach);
 
                     StarsEffectItem star = Spawner.Instance.Get(PoolObjectKinds.StarEffect) as StarsEffectItem;
                     star.Play(this.CachedTransform);

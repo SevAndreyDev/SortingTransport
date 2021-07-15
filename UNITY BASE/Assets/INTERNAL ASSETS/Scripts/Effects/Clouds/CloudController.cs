@@ -53,7 +53,7 @@ namespace EnglishKids.SortingTransport
         // Methods
         //==================================================
 
-        protected override void Init()
+        protected override void Init(params object[] args)
         {
             base.Init();
 
@@ -65,8 +65,10 @@ namespace EnglishKids.SortingTransport
             }                        
         }
 
-        public void Activate()
+        public override void Activate(params object[] args)
         {
+            base.Activate(args);
+        
             this.IsFading = true;
 
             var secuance = DOTween.Sequence();
@@ -84,8 +86,10 @@ namespace EnglishKids.SortingTransport
             StartCoroutine(GenerateCloudsProcess());
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
+            base.Deactivate();
+                        
             this.IsFading = true;
 
             var secuance = DOTween.Sequence();

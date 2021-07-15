@@ -1,4 +1,3 @@
-using System.Collections;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine;
@@ -43,7 +42,7 @@ namespace EnglishKids.SortingTransport
         private float _duration;
 
         private States _state;
-        
+
         //==================================================
         // Properties
         //==================================================
@@ -52,8 +51,12 @@ namespace EnglishKids.SortingTransport
         // Methods
         //==================================================
 
-        public void Activate(StarsView uiTarget)
+        public override void Activate(params object[] args)
         {
+            base.Activate(args);
+
+            StarsView uiTarget = (StarsView)args[0];
+            
             _target = uiTarget.CachedTransform;
 
             _resetParticles = false;
@@ -64,9 +67,11 @@ namespace EnglishKids.SortingTransport
 
             _particles.Play(true);
         }
-                
-        public void Deactivate()
+
+        public override void Deactivate()
         {
+            base.Deactivate();
+            
             _state = States.Idle;
             _checkParticles = false;
 
@@ -111,9 +116,6 @@ namespace EnglishKids.SortingTransport
                     break;
 
                 case States.InSlot:
-                    //if (_particles.isPlaying)
-                    //    return;
-
                     Deactivate();
                     break;
             }
@@ -135,8 +137,6 @@ namespace EnglishKids.SortingTransport
                 {
                     _manager.Stars++;
                     _state = States.InSlot;
-                    //_particles.Stop(true);
-                    //Deactivate();
                 });
             }
         }

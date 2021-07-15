@@ -20,17 +20,21 @@ namespace EnglishKids.SortingTransport
         // Methods
         //==================================================
 
-        public void Activate(ColorBlock data, ColorBlock.TransportElement transport)
+        public override void Activate(params object[] args)
         {
-            Subscribe(EventManager.Subscribes.Subscribe);
+            base.Activate(args);
+
+            ColorBlock data = (ColorBlock)args[0];
+            ColorBlock.TransportElement transport = (ColorBlock.TransportElement)args[1];
+                        
             _dragElement.Activate(data, transport);
         }
-                
-        public void Deactivate()
-        {
-            Subscribe(EventManager.Subscribes.Unscribe);
-            _dragElement.Deactivate();
 
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            
+            _dragElement.Deactivate();
             this.Pool.Put(this.gameObject);
         }
 
@@ -38,8 +42,8 @@ namespace EnglishKids.SortingTransport
         {
             base.Subscribe(subscribe);
 
-            _eventManager.RefreshEventListener(GameEvents.PrepareToResetGame.ToString(), OnPrepareToResetGame, subscribe);
-            _eventManager.RefreshEventListener(GameEvents.ResetGameSceneObjects.ToString(), OnResetGame, subscribe);
+            _eventsManager.RefreshEventListener(GameEvents.PrepareToResetGame.ToString(), OnPrepareToResetGame, subscribe);
+            _eventsManager.RefreshEventListener(GameEvents.ResetGameSceneObjects.ToString(), OnResetGame, subscribe);
         }
 
         #region Events

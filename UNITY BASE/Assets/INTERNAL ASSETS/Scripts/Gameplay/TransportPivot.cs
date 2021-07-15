@@ -21,14 +21,16 @@ namespace EnglishKids.SortingTransport
         public TransportKinds TransportKind { get { return _kind; } }
         public ColorKinds ColorKind { get; private set; }
         public Audio TransportSound { get { return _transportSound; } }
-        
+
         //==================================================
         // Methods
         //==================================================
 
-        public void Activate(ColorKinds kind)
+        public override void Activate(params object[] args)
         {
-            this.ColorKind = kind;
+            base.Activate(args);
+
+            this.ColorKind = (ColorKinds)args[0];
 
             DragElement.OnElementWasActivated -= OnElementWasActivated;
             DragElement.OnElementWasActivated += OnElementWasActivated;

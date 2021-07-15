@@ -13,13 +13,8 @@ namespace EnglishKids.SortingTransport
         //==================================================
         // Methods
         //==================================================
-
-        private void Awake()
-        {
-            
-        }
-
-        protected override void Init()
+        
+        protected override void Init(params object[] args)
         {
             base.Init();
 

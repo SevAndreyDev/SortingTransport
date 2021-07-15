@@ -25,7 +25,6 @@ namespace EnglishKids.SortingTransport
         [Header("Tween Animation")]
         [SerializeField] private TweenAnimation _fadeTween;
         
-        //private GameManager _manager;
         private int _leftStars;
 
         //==================================================

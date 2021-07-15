@@ -15,24 +15,25 @@ namespace EnglishKids.SortingTransport
         //==================================================
         // Methods
         //==================================================
-
+                        
         public void Configure(int contentCount)
         {
             this.ContentItemsCount = contentCount;
             OnCellIsEmpty = null;
         }
 
-        public void Activate()
+        protected override void Subscribe(EventManager.Subscribes subscribe)
         {
-            DragElement.OnElementWasUsed -= OnElementWasUsed;
-            DragElement.OnElementWasUsed += OnElementWasUsed;
-        }
+            base.Subscribe(subscribe);
 
-        public void Deactivate()
-        {
             DragElement.OnElementWasUsed -= OnElementWasUsed;
-        }
+            if (subscribe == EventManager.Subscribes.Subscribe)
+            {
+                DragElement.OnElementWasUsed += OnElementWasUsed;
+            }
 
+        }
+        
         #region Events
         private void OnElementWasUsed()
         {

@@ -15,14 +15,19 @@ namespace EnglishKids.SortingTransport
         private CloudController.CloudData _data;
         private Vector3 _direction;
         private float _halfWidth;
-                
+
         //==================================================
         // Methods
         //==================================================
 
-        public void Activate(CloudController.CloudData data, Orientations direction, RectTransform leftPivot, RectTransform rightPivot)
+        public override void Activate(params object[] args)
         {
-            Subscribe(EventManager.Subscribes.Subscribe);
+            base.Activate(args);
+
+            CloudController.CloudData data = (CloudController.CloudData)args[0];
+            Orientations direction = (Orientations)args[1];
+            RectTransform leftPivot = (RectTransform)args[2];
+            RectTransform rightPivot = (RectTransform)args[3];
 
             _leftAnchor = leftPivot;
             _rightAnchor = rightPivot;
@@ -39,9 +44,9 @@ namespace EnglishKids.SortingTransport
             SetActive(true);
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
-            Subscribe(EventManager.Subscribes.Unscribe);            
+            base.Deactivate();
             this.Pool.Put(this.gameObject);
         }
 
@@ -49,7 +54,7 @@ namespace EnglishKids.SortingTransport
         {
             base.Subscribe(subscribe);
 
-            _eventManager.RefreshEventListener(GameEvents.ResetGameSceneObjects.ToString(), OnResetGame, subscribe);
+            _eventsManager.RefreshEventListener(GameEvents.ResetGameSceneObjects.ToString(), OnResetGame, subscribe);
         }
 
         private void Update()

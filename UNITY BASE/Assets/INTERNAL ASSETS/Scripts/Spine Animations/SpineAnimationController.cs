@@ -43,10 +43,11 @@ namespace EnglishKids.SortingTransport
         protected void PlayAnimation(AnimationReferenceAsset targetAnimation, bool loop, float animationSpeed)
         {
             if (!targetAnimation.name.Equals(_currentAnimationName))
-            {
+            {                
                 this.IsPlaying = true;
                 this.IsLooping = loop;
 
+                //_animation.Skeleton.SetToSetupPose();
                 _animation.AnimationState.ClearTrack(0);
                 _animation.AnimationState.SetAnimation(0, targetAnimation, loop).TimeScale = animationSpeed;
 
@@ -57,12 +58,17 @@ namespace EnglishKids.SortingTransport
                 }
 
                 _currentAnimationName = targetAnimation.name;
-            }            
+            }                        
         }
 
         protected void PlayAnimation(AnimationModule animationModule)
         {
             PlayAnimation(animationModule.animation, animationModule.loop, animationModule.speed);
+        }
+
+        public void SetStartPose()
+        {
+            _animation.Skeleton.SetToSetupPose();
         }
                 
         #region Events

@@ -9,9 +9,7 @@ namespace EnglishKids.SortingTransport
         public enum AnimationKinds
         {
             Idle,
-            Speach,
-            AfterSpeach,
-            Jump
+            Speach
         }
 
         [Serializable]

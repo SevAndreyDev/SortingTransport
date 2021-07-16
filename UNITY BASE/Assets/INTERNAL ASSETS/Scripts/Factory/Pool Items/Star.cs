@@ -137,6 +137,7 @@ namespace EnglishKids.SortingTransport
                 {
                     _manager.Stars++;
                     _state = States.InSlot;
+                    _audio.PlaySound(Audio.Coin);
                 });
             }
         }

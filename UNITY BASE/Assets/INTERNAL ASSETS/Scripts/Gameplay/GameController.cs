@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 namespace EnglishKids.SortingTransport
 {
@@ -78,6 +79,7 @@ namespace EnglishKids.SortingTransport
             _backgroundTween.MoveToCutScenePosition(true);
             _robotTween.MoveToCutScenePosition(true);
             _mike.Hide(true);
+            _mike.SetStartPose();
             _mike.Play(Mike.AnimationKinds.Idle);
             _robot.Play(Robot.AnimationKinds.Start);            
             _conveyer.BuildCutCell();
@@ -118,10 +120,9 @@ namespace EnglishKids.SortingTransport
             _mike.Play(Mike.AnimationKinds.Speach);
             AudioManager.Instance.PlaySpeach(Speach.SortByColor);
             yield return new WaitWhile(() => _mike.IsPlaying);
-            _mike.Play(Mike.AnimationKinds.AfterSpeach);      // Bad final frame, record it with pause animation            
-            yield return new WaitWhile(() => _mike.IsPlaying);
+            _mike.SetStartPose();
             _mike.Play(Mike.AnimationKinds.Idle);
-
+            
             yield return new WaitForSeconds(SHORT_DELAY);
 
             _mike.Hide();
@@ -140,7 +141,8 @@ namespace EnglishKids.SortingTransport
             _robotTween.MoveToGameScenePosition();
 
             yield return new WaitWhile(() => _backgroundTween.IsTweenPlaying || _robotTween.IsTweenPlaying);
-
+                        
+            _robot.SetStartPose();
             _robot.Play(Robot.AnimationKinds.Start);
 
             _leftButton.Activate();
@@ -159,6 +161,8 @@ namespace EnglishKids.SortingTransport
                 
         private IEnumerator StarModeProcess()
         {
+            yield return new WaitForSeconds(SHORT_DELAY);
+
             _leftButton.Deactivate();
             _rightButton.Deactivate();
             _helpController.Deactivate();
@@ -211,6 +215,23 @@ namespace EnglishKids.SortingTransport
         private void OnStartResetGame()
         {
             StartCoroutine(ResetGameProcess());
+        }
+
+        public void OnSkipCutSceneButton()
+        {
+            if (_manager.State == GameStates.CutScene && !_robotTween.IsTweenPlaying)
+            {
+                StopAllCoroutines();
+                DOTween.CompleteAll();
+                _audio.StopSpeach();
+
+                _mike.Hide();
+                _mike.SetStartPose();
+                _mike.Play(Mike.AnimationKinds.Idle);
+                _conveyer.ResetPositionToFinalCutSceneState();
+                _manager.State = GameStates.Game;
+            }
+
         }
         #endregion
     }

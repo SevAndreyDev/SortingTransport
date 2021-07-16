@@ -292,6 +292,14 @@ namespace EnglishKids.SortingTransport
             cell.Configure(count);
         }
 
+        public void ResetPositionToFinalCutSceneState()
+        {
+            float height = (_startCell.CachedTransform.rect.height + _manager.CanvasHeight) * GameConstants.HALF_FACTOR;
+
+            this.CachedTransform.anchoredPosition = _startPosition + Vector2.down * height;
+            _currentCellIndex = 0;
+        }
+
         #region Events
         private void OnCellIsEmpty()
         {

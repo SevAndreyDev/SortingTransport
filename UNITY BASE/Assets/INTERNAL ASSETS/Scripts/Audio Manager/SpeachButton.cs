@@ -91,11 +91,14 @@ namespace EnglishKids.SortingTransport
 
         public void OnButtonClick()
         {
-            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
-
-            if (_isActive)
+            if (_manager.State == GameStates.Game)
             {
-                _audio.PlaySpeach(_currentSpeach);
+                _eventsManager.InvokeEvent(GameEvents.Action.ToString());
+
+                if (_isActive)
+                {
+                    _audio.PlaySpeach(_currentSpeach);
+                }
             }
         }
         #endregion

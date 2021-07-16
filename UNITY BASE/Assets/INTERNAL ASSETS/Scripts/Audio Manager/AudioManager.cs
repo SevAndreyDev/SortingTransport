@@ -16,7 +16,8 @@ namespace EnglishKids.SortingTransport
         CorrectAnswer,
         WrongAnswer,
         UploadYellowPaint,
-        RobotWork
+        RobotWork,
+        Coin
     }
 
     public enum Speach
@@ -38,9 +39,15 @@ namespace EnglishKids.SortingTransport
         Red,
         White
     }
-        
+
     public class AudioManager : MonoSingleton<AudioManager>
     {
+        [System.Serializable]
+        private class BaseTrack
+        {
+
+        }
+
         [System.Serializable]
         private class AudioTrack
         {
@@ -226,6 +233,12 @@ namespace EnglishKids.SortingTransport
                 _speachOrder.Enqueue(FindTrack(_speaches, speachSounds[i]));
         }
 
+        public void StopSpeach()
+        {
+            _speachOrder.Clear();
+            _speachSource.Stop();
+        }
+
         private IEnumerator PlayingSpeachProcess()
         {
             while (true)
@@ -246,7 +259,7 @@ namespace EnglishKids.SortingTransport
 
                         float duration = track.clip.length;
 
-                        yield return new WaitForSeconds(duration);
+                        yield return new WaitForEndOfFrame();
                     }
                     else
                     {

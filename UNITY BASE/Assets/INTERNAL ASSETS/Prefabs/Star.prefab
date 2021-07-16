@@ -92,14 +92,15 @@ MonoBehaviour:
   _cachedTransform: {fileID: 4839657443312244229}
   _objectKind: 1
   _moveTween:
-    duration: 0.6
+    duration: 0.55
     ease: 1
   _scaleTween:
-    duration: 0.6
+    duration: 0.55
     ease: 3
   _toScaleFactor: 0.5
   _particles: {fileID: 8320302521021962156}
   _particlesDuration: 2.5
+  _separateDuration: 0.25
 --- !u!1001 &8193696716780116544
 PrefabInstance:
   m_ObjectHideFlags: 0

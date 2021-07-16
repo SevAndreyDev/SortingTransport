@@ -59,9 +59,12 @@ namespace EnglishKids.SortingTransport
         #region Events
         public void OnBackgroundClick()
         {
-            _audio.PlaySpeach(this.ColorBlockData.ColorSpeach);
-            _eventsManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), this.ColorBlockData.Kind, this.ColorBlockData.ColorSpeach);
-            _eventsManager.InvokeEvent(GameEvents.Action.ToString());
+            if (_manager.State == GameStates.Game)
+            {
+                _audio.PlaySpeach(this.ColorBlockData.ColorSpeach);
+                _eventsManager.InvokeEvent(GameEvents.RefreshSpeachButton.ToString(), this.ColorBlockData.Kind, this.ColorBlockData.ColorSpeach);
+                _eventsManager.InvokeEvent(GameEvents.Action.ToString());
+            }
         }
         #endregion
     }

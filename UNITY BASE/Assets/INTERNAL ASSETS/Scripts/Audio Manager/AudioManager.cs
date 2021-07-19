@@ -43,26 +43,23 @@ namespace EnglishKids.SortingTransport
     public class AudioManager : MonoSingleton<AudioManager>
     {
         [System.Serializable]
-        private class BaseTrack
+        private class BaseTrack<T> where T : System.Enum
         {
-
+            public T kind;
+            public AudioClip clip;
+            [Range(0f, 1f)] public float volume = 1f;
         }
 
         [System.Serializable]
-        private class AudioTrack
+        private class AudioTrack : BaseTrack<Audio>
         {
-            public Audio kind;
-            public AudioClip clip;
-            [Range(0f, 1f)] public float volume = 1f;
             public int priority;
         }
 
         [System.Serializable]
-        private class SpeachTrack
-        {
-            public Speach kind;
-            public AudioClip clip;
-            [Range(0f, 1f)] public float volume = 1f;            
+        private class SpeachTrack : BaseTrack<Speach>
+        {            
+            public int priority;
         }
 
         //==================================================
@@ -194,7 +191,7 @@ namespace EnglishKids.SortingTransport
 
                     if (source.isPlaying)
                     {
-                        sourceTrack = FindTrack(_sounds, source.clip.name);
+                        sourceTrack = FindTrack(_sounds, source.clip.name) as AudioTrack;
                         continue;
                     }
                     else
@@ -207,7 +204,7 @@ namespace EnglishKids.SortingTransport
                     break;
                 }
 
-                AudioTrack itemTrack = FindTrack(_sounds, item.clip.name);
+                AudioTrack itemTrack = FindTrack(_sounds, item.clip.name) as AudioTrack;
                 if (sourceTrack.priority > itemTrack.priority)
                 {
                     source = item;
@@ -224,7 +221,7 @@ namespace EnglishKids.SortingTransport
                 source.Play();
             }
         }
-
+                
         public void PlaySpeach(params Speach[] speachSounds)
         {
             _speachOrder.Clear();
@@ -279,7 +276,7 @@ namespace EnglishKids.SortingTransport
 
             return null;
         }
-
+                
         private AudioTrack FindTrack(AudioTrack[] list, string name)
         {
             foreach (AudioTrack item in list)
@@ -289,7 +286,7 @@ namespace EnglishKids.SortingTransport
             }
 
             return null;
-        }
+        }        
 
         private SpeachTrack FindTrack(SpeachTrack[] list, Speach kind)
         {
@@ -301,7 +298,7 @@ namespace EnglishKids.SortingTransport
 
             return null;
         }
-
+        
         private SpeachTrack FindTrack(SpeachTrack[] list, string name)
         {
             foreach (SpeachTrack item in list)

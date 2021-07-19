@@ -1,6 +1,6 @@
 using System;
+using UnityEngine.UI;
 using UnityEngine;
-using TMPro;
 using DG.Tweening;
 
 namespace EnglishKids.SortingTransport
@@ -20,7 +20,7 @@ namespace EnglishKids.SortingTransport
 
         [Space]
         [SerializeField] CanvasGroup _canvasGroup;
-        [SerializeField] private TMP_Text _starsLabel;
+        [SerializeField] private Text _starsLabel;
 
         [Header("Tween Animation")]
         [SerializeField] private TweenAnimation _fadeTween;
